@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%@ include file ='../resources/header.jsp'%>
+<%@ include file ='../resources/header/header.jsp'%>
+<link href="../resources/header/header.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>
