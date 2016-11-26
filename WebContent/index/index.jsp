@@ -11,9 +11,11 @@
 <div class="IndexLogo"></div>
 	<div class="login-block">
 	    <h1>Login</h1>
+	    <form id='login'>
 	    <input type="text" value="" placeholder="Username" id="username" />
 	    <input type="password" value="" placeholder="Password" id="password" />
 	    <button>Submit</button>
+	    </form>
 	</div>
 </body>
 </html>
