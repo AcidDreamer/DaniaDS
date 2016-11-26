@@ -1,0 +1,73 @@
+/*==========================Header=========================*/
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #4f5051;
+}
+
+li {
+    float: left;
+    border-right:1px solid #000000;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #2e3133;
+}
+
+.active {
+    background-color: #1f4763;
+}
+
+body {
+  margin:0px 0px 0px 0px;
+}
+/*==========================Search Bar=========================*/
+#search{
+    text-align: center;
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #7c8c7d;
+    margin: 0 auto;
+}
+
+#search input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 50px;
+    outline: none;
+}
+/*==========================Customer Info=========================*/
+#Customer_Info{
+    text-align: center;
+    font-size:14px;
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #7c8c7d;
+    margin: 0 auto;
+
+}
