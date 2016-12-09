@@ -104,9 +104,8 @@
 		</div>
 		<div class="Delete">
 				<form class="DeleteForm">
-					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" id="username" />
-				</div>
-				<br><button>Delete</button>
+					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" id="username" /></div>
+					<br><button>Delete</button>
 				</form>
 		</div>
 	</div>
