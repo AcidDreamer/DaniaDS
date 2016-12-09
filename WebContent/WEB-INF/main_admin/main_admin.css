@@ -1,0 +1,218 @@
+body {
+    background: url('http://www.amazingwallpaperz.com/wp-content/uploads/Classic-Car-High-Quality-Wallpapers.jpg') no-repeat fixed center center;
+    background-size: cover;
+    font-family: Montserrat;
+}
+
+
+.Option h1 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.Option button {
+    width: 20%;
+    height: 40px;
+    background: #7c8c7d;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #7c8c7d;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+	margin-left:2%;
+}
+
+.Option button:hover {
+    background: #2c6bd6;
+}
+
+.Display {
+	color: #fff;
+	margin-top:3%;
+    background-color: #c0c0c0;
+    font-size: 14px;
+    font-family: Montserrat;
+}
+
+.Display .Add {
+	padding-top:3%;
+	padding-bottom:3%;
+    text-align: center;
+}
+
+
+.Display .Add select{
+	 color:#fff;
+	 margin-left:2%;
+	 margin-right:2%;
+	 background-color:#7c8c7d;
+	 width: 8%;
+	 outline: none; 
+}
+
+.Display .Add Button{
+	width: 8%;
+    background: #7c8c7d;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #7c8c7d;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    
+}
+
+.Display .Add Button:hover {
+    background: #2c6bd6;
+}
+
+.Display .Add .UserForm{
+	padding-top:2%;
+}
+
+.Display .Add .AdminForm{
+	padding-top:2%;
+}
+
+.Display .Add div{
+	width:40%;
+	display:inline-block;
+	font-size: 14px;
+    font-family: Montserrat;	
+}
+
+.Display .Add input {
+    width: 30%;
+    height: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 50px;
+    outline: none;  
+}
+
+.Display .Edit {
+	padding-top:3%;
+	padding-bottom:3%;
+    text-align:center;
+}
+
+
+.Display .Edit select{
+	 color:#fff;
+	 margin-left:2%;
+	 margin-right:2%;
+	 background-color:#7c8c7d;
+	 width: 8%;
+	 outline: none; 
+}
+
+.Display .Edit Button{
+	width: 8%;
+    background: #7c8c7d;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #7c8c7d;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    
+}
+
+.Display .Edit Button:hover {
+    background: #2c6bd6;
+}
+
+.Display .Edit .UserFormEdit{
+	padding-top:2%;
+}
+
+.Display .Edit .AdminFormEdit{
+	padding-top:2%;
+}
+
+.Display .Edit input {
+    width: 30%;
+    height: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 50px;
+    outline: none;  
+}
+
+.Display .Edit div{
+	width:90%;
+	display:inline-block;
+	font-size: 14px;
+    font-family: Montserrat;	
+}
+
+.Delete{
+	padding-top:3%;
+	padding-bottom:3%;
+    text-align:center;
+}
+
+.Display .Delete div{
+	font-size: 14px;
+    font-family: Montserrat;	
+}
+
+.Display .Delete input {
+    height: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 50px;
+    outline: none;  
+}
+
+.Display .Delete Button{
+	width: 8%;
+    background: #7c8c7d;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #7c8c7d;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    
+}
+
+.Display .Delete Button:hover {
+    background: #ea0000;
+}
