@@ -197,7 +197,7 @@ body {
     outline: none;  
 }
 
-.Display .Delete Button{
+.Display Button{
 	width: 8%;
     background: #7c8c7d;
     box-sizing: border-box;
@@ -214,5 +214,5 @@ body {
 }
 
 .Display .Delete Button:hover {
-    background: #ea0000;
+    background: #c60000;
 }
