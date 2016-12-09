@@ -74,6 +74,22 @@
 							<option value=1>Password</option>
 							<option value=2>Status</option>
 							<option value=3>Full name</option>
+							<option value=4>ID</option>
+						</select>
+					</div>
+					<!-- ginete isodos neas timis -->
+					<div class = "TextSpans">New Value:<input type="text" value="" placeholder="New Value" id="newValue" /></div>
+					<br><button>Submit</button>					
+				</form>
+				<form class="AdminFormEdit">
+					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" id="username" />
+						Change:
+						<!--  Dialegw pio pedio tha allaksi  -->
+						<select class="selectToChange">
+							<option value=0>Username</option>
+							<option value=1>Password</option>
+							<option value=2>Status</option>
+							<option value=3>Full name</option>
 							<option value=4>ATM</option>
 							<option value=5>IDN</option>
 							<option value=6>Salary</option>
@@ -84,6 +100,7 @@
 					<div class = "TextSpans">New Value:<input type="text" value="" placeholder="New Value" id="newValue" /></div>
 					<br><button>Submit</button>					
 				</form>
+				
 		</div>
 		<div class="Delete">
 				<form class="DeleteForm">
