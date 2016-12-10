@@ -8,7 +8,6 @@
 	<link href="main.css" rel="stylesheet" type="text/css"/>
 	<title>Welcome to Someone's Bank</title>
 	<ul>
-		<li><a href="">New Loan</a></li>
 		<li style="float:right" ><a href="">Log-out</a></li>
 	</ul>
 </head>
