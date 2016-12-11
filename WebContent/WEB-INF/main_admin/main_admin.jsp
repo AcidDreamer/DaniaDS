@@ -4,7 +4,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link href="main_admin.css" rel="stylesheet" type="text/css"/>
+	<%@ include file ='../resources/header/header.jsp'%>
+	<link href="css/main_admin.css" rel="stylesheet" type="text/css"/>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>

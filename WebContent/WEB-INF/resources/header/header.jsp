@@ -1,37 +1,45 @@
+<%@page import="bean.user"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <header>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 	<title>Welcome to Someone's Bank</title>
-	<div  class = "login"><form class = "loginForm">
-		Username:<input type="text" value="" placeholder="Username" id="usernameHeader" />
-		Password:<input type="text" value="" placeholder="Password" id="passwordHeader" />
-		<button>Submit</button>
-	</form> </div>
-	<div class="logout"><button>Logout</button></div>
+	
+	<% 
+			user User = (user) session.getAttribute("User");
+	%>
+	<div class = "loggedIn">
+			<b>Hey, <%= User.getFullname() %>.Your status is : <%= User.getRole() %></b>
+	</div>
+	
+	<div class="logout"><form name = "logout" action="logoutServlet" method="post"><button>Logout</button></form></div>
 	<style>
 		header{
 			color:white;
-			background-color: #160bfd ;
+			background-color: #655fe8;
+			overflow:hidden;
+			padding:3%;
 		}
-		div {
+		header div {
 			display:inline;
 		}
-		.loginForm{
+		header .loggedIn{
 			display:inline;
 			clear:left;
+			width:50%;
+    		text-align: center;
 		}
-		.login {
-			width:60%;
-		}
-		.logout{
+		
+		header .logout{
 			float:right;
 			width:20%;
 		}
-		button{
+		header button{
 		    width: 100px;
 		    background: #7c8c7d;
 		    box-sizing: border-box;
@@ -45,11 +53,11 @@
 		    outline: none;
 		    cursor: pointer;
 		}
-		button:hover {
+		header button:hover {
 		    background: #2c6bd6;
 		}
 		
-		input {
+		header input {
 		    text-align: center;
 		    box-sizing: border-box;
 		    border-radius: 5px;

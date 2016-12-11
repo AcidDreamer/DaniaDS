@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-	<display-name>DaniaDS</display-name>
-  	
-  	
-  	<session-config>
-			<session-timeout>30</session-timeout>
-			<cookie-config>
-				<http-only>true</http-only>
-			</cookie-config>
-			<tracking-mode>COOKIE</tracking-mode>
-	</session-config>
+  <display-name>DaniaDS</display-name>
+  
   
   <welcome-file-list>
-    <welcome-file>index/index.jsp</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
+  
+  <session-config>
+    <session-timeout>30</session-timeout>
+    <cookie-config>
+      <http-only>true</http-only>
+    </cookie-config>
+    <tracking-mode>COOKIE</tracking-mode>
+  </session-config>
+  
+  
+  <servlet>
+    <servlet-name>loginServlet</servlet-name>
+    <servlet-class>login_out/loginServlet.java</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>logoutServlet</servlet-name>
+    <servlet-class>login_out/logoutServlet.java</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+   <servlet>
+ 	 <servlet-name>checkYourPrivilages</servlet-name>
+    <servlet-class>checkFuntions/checkYourPrivilages.java</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  
+  <context-param>
+    <param-name>dbUser</param-name>
+    <param-value>21458</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbPassword</param-name>
+    <param-value>vegeta997</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbURL</param-name>
+    <param-value>jdbc:mysql://62.217.125.30:3306/21458</param-value>
+  </context-param>
 </web-app>
