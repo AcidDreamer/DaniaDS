@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>DaniaDS</display-name>
-  
-  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  
-  
   <session-config>
     <session-timeout>30</session-timeout>
     <cookie-config>
@@ -15,8 +11,6 @@
     </cookie-config>
     <tracking-mode>COOKIE</tracking-mode>
   </session-config>
-  
-  
   <servlet>
     <servlet-name>loginServlet</servlet-name>
     <servlet-class>login_out/loginServlet.java</servlet-class>
@@ -27,12 +21,16 @@
     <servlet-class>login_out/logoutServlet.java</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-   <servlet>
- 	 <servlet-name>checkYourPrivilages</servlet-name>
+  <servlet>
+    <servlet-name>checkYourPrivilages</servlet-name>
     <servlet-class>checkFuntions/checkYourPrivilages.java</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
+  <servlet>
+    <servlet-name>roleAdmin</servlet-name>
+    <servlet-class>adminFucntions/roleAdmin.java</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
   
   <context-param>
     <param-name>dbUser</param-name>

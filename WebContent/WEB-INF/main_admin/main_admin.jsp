@@ -6,10 +6,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<%@ include file ='../resources/header/header.jsp'%>
 	<link href="css/main_admin.css" rel="stylesheet" type="text/css"/>
+	<%@page import="bean.roles"%>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
-
+	<% 
+			roles  Roles = (roles) session.getAttribute("Roles");
+	%>
 <body>
 	<!-- Epilegw ti allagi tha kanw -->
 	<div class="Option">
@@ -17,18 +20,13 @@
 				<button class="AddBtn">Add User</button>		    	
 				<button class="EditBtn">Edit User</button>
 			    <button class="DeleteBtn">Remove User</button>
-			    <button>Logout</button>
 	</div>
 	<div class="Display">
 	
 		<!-- Prosthetw xristi -->
 		<div class="Add">
 				Select account type : 
-				<select class="selectForm">
-					<option value=0>Customer</option>
-					<option value=1>Loan Administrator</option>
-					<option value=1>Manager</option>
-				</select>
+				<%=Roles.getRolesSelect() %>
 				<button class="SelectBtnAdd">Select</button>
 				<!-- Ama einai xristis -->
 				<form class="UserForm">
@@ -58,11 +56,7 @@
 		<div class="Edit">
 				Select account type : 
 				<!-- epilegw typo xristi -->
-				<select class="selectFormEdit">
-					<option value=0>Customer</option>
-					<option value=1>Loan Administrator</option>
-					<option value=1>Manager</option>
-				</select>
+				<%=Roles.getRolesSelect() %>
 				<button class="SelectBtnEdit">Select</button>
 				
 				<!--  An einai xristis dinw username , pio pedio tha allaksw kai tin timi -->

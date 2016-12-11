@@ -6,7 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>DaniaDS Log-in</title>
 <link href="css/index.css" rel="stylesheet" type="text/css"/>
-
+<%
+if (session.getAttribute("User") != null) {
+        response.sendRedirect("main.jsp");
+}
+%>
 </head>
 <body>
 <div class="IndexLogo"></div>

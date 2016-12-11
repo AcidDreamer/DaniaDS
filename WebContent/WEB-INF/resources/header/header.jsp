@@ -16,7 +16,8 @@
 	<div class = "loggedIn">
 			<b>Hey, <%= User.getFullname() %>.Your status is : <%= User.getRole() %></b>
 	</div>
-	
+	<div class="home"><a href="main.jsp">Home button</a>
+	</div>
 	<div class="logout"><form name = "logout" action="logoutServlet" method="post"><button>Logout</button></form></div>
 	<style>
 		header{
@@ -25,6 +26,11 @@
 			overflow:hidden;
 			padding:3%;
 		}
+		header .home{
+			width:20%;
+
+		}
+		
 		header div {
 			display:inline;
 		}
@@ -52,6 +58,7 @@
 		    font-family: Montserrat;
 		    outline: none;
 		    cursor: pointer;
+			height:44px;
 		}
 		header button:hover {
 		    background: #2c6bd6;
@@ -67,6 +74,19 @@
 		    font-family: Montserrat;
 		    outline: none;  
 		}
+		header a:link, a:visited {
+		    background-color: #4d9137;
+		    color: white;
+		    padding: 14px 25px;
+		    text-align: center; 
+		    text-decoration: none;
+		    display: inline-block;
+		}
+		
+		a:hover, a:active {
+		    background-color: #62d33d;
+		}
+		
 		</style>
 </header>
 </body>
