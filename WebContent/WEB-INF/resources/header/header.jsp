@@ -18,7 +18,7 @@
 	</div>
 	<div class="home"><a href="main.jsp">Home button</a>
 	</div>
-	<div class="logout"><form name = "logout" action="logoutServlet" method="post"><button>Logout</button></form></div>
+	<div class="logout"><form name = "logoutForm" action="logoutServlet" method="post"><button>Logout</button></form></div>
 	<style>
 		header{
 			color:white;
@@ -75,16 +75,18 @@
 		    outline: none;  
 		}
 		header a:link, a:visited {
-		    background-color: #4d9137;
+		    background-color: #7c8c7d;
 		    color: white;
 		    padding: 14px 25px;
 		    text-align: center; 
 		    text-decoration: none;
 		    display: inline-block;
+		    border-radius: 5px;
+		 
 		}
 		
 		a:hover, a:active {
-		    background-color: #62d33d;
+		    background-color: #2c6bd6;
 		}
 		
 		</style>

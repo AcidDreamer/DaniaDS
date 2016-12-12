@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="bean.user"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,7 +9,9 @@
 <title>DaniaDS Log-in</title>
 <link href="css/index.css" rel="stylesheet" type="text/css"/>
 <%
-if (session.getAttribute("User") != null) {
+user User = (user) session.getAttribute("User");
+
+if (session.getAttribute("User") != null && !(User.getRole().equals("Client")) ) {
         response.sendRedirect("main.jsp");
 }
 %>

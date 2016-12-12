@@ -29,25 +29,23 @@
 				<%=Roles.getRolesSelect() %>
 				<button class="SelectBtnAdd">Select</button>
 				<!-- Ama einai xristis -->
-				<form class="UserForm">
-					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" id="username" /></div>
-					<div class = "TextSpans">Password:<input type="text" value="" placeholder="Password" id="password" /></div><br>
-					<div class = "TextSpans">Status:<input type="text" value="" placeholder="Status" id="status" /></div>
-					<div class = "TextSpans">Full name:<input type="text" value="" placeholder="Full name" id="full_name" /></div><br>
-					<div class = "TextSpans">ATM:<input type="text" value="" placeholder="ATM" id="atm" /></div>
-					<div class = "TextSpans">IDN:<input type="text" value="" placeholder="IDN" id="adt" /></div><br>
-					<div class = "TextSpans">Salary:<input type="text" value="" placeholder="Salary" id="salary" /></div>
-					<div class = "TextSpans">Phone:<input type="text" value="" placeholder="Phone" id="phone" /></div>
-					<br><button>Submit</button>
+				<form class="UserForm" action="adminUsers" method="post">
+					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" name="username" /></div>
+					<div class = "TextSpans">Password:<input type="text" value="" placeholder="Password" name="password" /></div><br>
+					<div class = "TextSpans">Full name:<input type="text" value="" placeholder="Full name" name="full_name" /></div><br>
+					<div class = "TextSpans">ATM:<input type="text" value="" placeholder="ATM" name="atm" /></div>
+					<div class = "TextSpans">IDN:<input type="text" value="" placeholder="IDN" name="adt" /></div><br>
+					<div class = "TextSpans">Salary:<input type="text" value="" placeholder="Salary" name="salary" /></div>
+					<div class = "TextSpans">Phone:<input type="text" value="" placeholder="Phone" name="phone" /></div>
+					<br><button name="ClientAddBtn">Submit</button>
 				</form>
 				<!--  Ama einai admin -->
-				<form class="AdminForm">
-					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" id="username" /></div>
-					<div class = "TextSpans">Password:<input type="text" value="" placeholder="Password" id="password" /></div><br>
-					<div class = "TextSpans">Status:<input type="text" value="" placeholder="Status" id="status" /></div>
-					<div class = "TextSpans">Full name:<input type="text" value="" placeholder="Full name" id="full_name" /></div><br>
-					<div class = "TextSpans">ID:<input type="text" value="" placeholder="ID" id="id" /></div>
-					<br><button>Submit</button>
+				<form class="AdminForm" action="adminUsers" method="post">
+					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" name="username" /></div>
+					<div class = "TextSpans">Password:<input type="text" value="" placeholder="Password" name="password" /></div><br>
+					<div class = "TextSpans">Full name:<input type="text" value="" placeholder="Full name" name="full_name" /></div><br>
+					Role: <%=Roles.getRolesSelect() %>
+					<br><br><button name="OtherAddBtn">Submit</button>
 				</form>
 				
 		</div>
@@ -61,7 +59,7 @@
 				
 				<!--  An einai xristis dinw username , pio pedio tha allaksw kai tin timi -->
 				<form class="UserFormEdit">
-					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" id="username" />
+					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" name="username" />
 						Change:
 						<!--  Dialegw pio pedio tha allaksi  -->
 						<select class="selectToChange">
@@ -73,17 +71,17 @@
 						</select>
 					</div>
 					<!-- ginete isodos neas timis -->
-					<div class = "TextSpans">New Value:<input type="text" value="" placeholder="New Value" id="newValue" /></div>
+					<div class = "TextSpans">New Value:<input type="text" value="" placeholder="New Value" name="newValue" /></div>
 					<br><button>Submit</button>					
 				</form>
 				<form class="AdminFormEdit">
-					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" id="username" />
+					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" name="username" />
 						Change:
 						<!--  Dialegw pio pedio tha allaksi  -->
 						<select class="selectToChange">
 							<option value=0>Username</option>
 							<option value=1>Password</option>
-							<option value=2>Status</option>
+							<option value=2>Role</option>
 							<option value=3>Full name</option>
 							<option value=4>ATM</option>
 							<option value=5>IDN</option>
@@ -92,15 +90,15 @@
 						</select>
 					</div>
 					<!-- ginete isodos neas timis -->
-					<div class = "TextSpans">New Value:<input type="text" value="" placeholder="New Value" id="newValue" /></div>
+					<div class = "TextSpans">New Value:<input type="text" value="" placeholder="New Value" name="newValue" /></div>
 					<br><button>Submit</button>					
 				</form>
 				
 		</div>
 		<div class="Delete">
-				<form class="DeleteForm">
-					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" id="username" /></div>
-					<br><button>Delete</button>
+				<form class="DeleteForm" action="adminUsers" method="post" >
+					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" name="username" /></div><%=Roles.getRolesSelect() %><br>					
+					<br><button name="deleteBtn">Delete</button>
 				</form>
 		</div>
 	</div>
@@ -132,24 +130,25 @@ $( ".DeleteBtn" ).click(function(event) {
 });
 
 $( ".SelectBtnAdd" ).click(function(event) {
-	if($(".selectForm").val()==0){
+	if($(".allRoles").val()=="Client"){
 		  $( ".AdminForm" ).hide(500);
 		  $(".UserForm").show(500);
-	}else if($(".selectForm").val()==1){
+	}else if($(".allRoles").val()!="Client"){
 		  $( ".UserForm" ).hide(500);
 		  $(".AdminForm").show(500);
 	}
 });
 
 $( ".SelectBtnEdit" ).click(function(event) {
-	if($(".selectFormEdit").val()==0){
+	if($(".allRoles").val()!="Client"){
 		  $( ".AdminFormEdit" ).hide(500);
 		  $(".UserFormEdit").show(500);
-	}else if($(".selectFormEdit").val()==1){
+	}else if($(".allRoles").val()=="Client"){
 		  $( ".UserFormEdit" ).hide(500);
 		  $(".AdminFormEdit").show(500);
 	}
 });
+
 
 
 </script>

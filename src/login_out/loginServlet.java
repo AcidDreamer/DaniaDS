@@ -43,12 +43,12 @@ public class loginServlet extends HttpServlet {
 			ResultSet rs = null;
 			try {
 				ps = con.prepareStatement(
-						"SELECT username,role,full_name,Elegxos,Kataxwrisi,Ypologismos,Tropopoiisi,Egkrisi,isAdmin,isClient FROM User,role WHERE username=? and password=? and isClient=0 limit 1;");
+						"SELECT DISTINCT u.username,u.role,full_name,Elegxos,Kataxwrisi,Ypologismos,Tropopoiisi,Egkrisi,isAdmin,isClient FROM User u JOIN role r ON u.role = r.rolename  WHERE username=? and password=? and isClient=0 limit 1;");
 				ps.setString(1, username);
 				ps.setString(2, password);
 				rs = ps.executeQuery();
 				if (rs != null && rs.next()) {
-					user user = new user(rs.getString("username"), rs.getString("role"), rs.getString("full_name"),
+					user user = new user(rs.getString("username"), rs.getString("full_name"), rs.getString("role"),
 							rs.getInt("Elegxos"), rs.getInt("Kataxwrisi"), rs.getInt("Ypologismos"),
 							rs.getInt("Tropopoiisi"), rs.getInt("Egkrisi"), rs.getInt("isAdmin"),
 							rs.getInt("isClient"));

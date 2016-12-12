@@ -1,7 +1,7 @@
 package bean;
 
 public class roles {
-	private String rolesSelect="<select name=\"allRoles\">";
+	private String rolesSelect="<select name=\"allRoles\" class=\"allRoles\">";
 
 
 	public String getRolesSelect() {

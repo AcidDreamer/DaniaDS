@@ -77,7 +77,6 @@ public class roleAdmin extends HttpServlet {
 				out.println("<script>alert(\"" + "Role added successfully" + "\")</script>");
 				rd.include(request, response);
 			} catch (SQLException e) {
-				System.out.println("Database connection problem");
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert(\"" + e + "\")</script>");
@@ -96,10 +95,10 @@ public class roleAdmin extends HttpServlet {
 		if (request.getParameter("remove") != null) {
 			String toRemove;
 			toRemove = request.getParameter("allRoles");
-			if (toRemove.equals("Adminstrator")) {
+			if (toRemove.equals("Administrator")) {
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert(\"You are not allowed to remove this role -> Adminstrator\");</script>");
+				out.println("<script>alert(\"You are not allowed to remove this role -> Administrator\");</script>");
 				rd.include(request, response);
 
 			} else {

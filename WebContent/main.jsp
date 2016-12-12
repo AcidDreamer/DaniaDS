@@ -7,8 +7,10 @@
 <link href="css/main.css" rel="stylesheet" type="text/css"/>
 <%
 //allow access only if session exists
-if (session.getAttribute("User") == null) {
+user User1 = (user) session.getAttribute("User");
+if (session.getAttribute("User") == null || User1.getRole().equals("Client") ) {
         response.sendRedirect("index.jsp");
+        
 }else{%>
 <%@ include file ='../WEB-INF/resources/header/header.jsp'%>
 <%}
