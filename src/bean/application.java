@@ -28,26 +28,26 @@ public class application {
 	}
 	
 	public boolean canGetLoad(client Client) {
-		if(Client.getSalary()<400){
+		if(Client.getSalary() < 400){
 			return false;
 		}
 		if((amount == 2000 && (repayTime==1 || repayTime==2 || repayTime==3 ))){
-			if(Client.getSalary() > 400){
+			if(Client.getSalary() >= 400){
 				return true;
 			}
 		}
 		if((amount == 4000 && (repayTime==1 || repayTime==2 || repayTime==3 || repayTime==4))){
-			if(Client.getSalary() > 800){
+			if(Client.getSalary() >= 800){
 				return true;
 			}
 		}
 		if((amount == 8000 && (repayTime==1 || repayTime==2 || repayTime==3 || repayTime==4 || repayTime==5))){
-			if(Client.getSalary() > 1200){
+			if(Client.getSalary() >= 1200){
 				return true;
 			}
 		}
 		if((amount == 15000 && (repayTime==1 || repayTime==2 || repayTime==3 || repayTime==4 || repayTime==5 || repayTime==6 || repayTime==7|| repayTime==8 || repayTime==8 || repayTime==9 || repayTime ==10))){
-			if(Client.getSalary() > 1800){
+			if(Client.getSalary() >= 1800){
 				return true;
 			}
 		}
