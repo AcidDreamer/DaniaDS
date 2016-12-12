@@ -27,11 +27,11 @@ public class sentApplication extends HttpServlet {
 			throws ServletException, IOException {
 		if (request.getParameter("app_code") == null || request.getParameter("taxes") == null || request.getParameter("repayTime") == null
 				|| request.getParameter("drivers_licence").equals("") || request.getParameter("username").equals("")
-				|| request.getParameter("taxes") == null) {
+				|| request.getParameter("taxes") == null || request.getParameter("app_code") == null || request.getParameter("taxes").equals("") || request.getParameter("repayTime").equals("")
+				|| request.getParameter("taxes").equals("")) {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert(\"" + "Form elements cannot be empty ." + "\")</script>");
-			RequestDispatcher rd = getServletContext()
-					.getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
 			rd.include(request, response);
 
 		} else {
@@ -86,7 +86,7 @@ public class sentApplication extends HttpServlet {
 					}
 				} else {
 					out.println("<script>alert(\"" + "User has not been found ." + "\")</script>");
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
 					rd.include(request, response);
 				}
 			} catch (SQLException e) {
