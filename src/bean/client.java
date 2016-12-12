@@ -8,6 +8,7 @@ public class client {
 	int salary;
 	int  phone;
 	String loanInfo = "";
+	int id;
 
 	public client(String username, String fullname, int afm, int adt, int salary, int phone, int id) {
 		super();
@@ -19,7 +20,10 @@ public class client {
 		this.phone = phone;
 		this.id = id;
 	}
-
+	public client(String username,int salary){
+		this.username = username;
+		this.salary = salary;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -75,8 +79,8 @@ public class client {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 
-	int id;
 
 	@Override
 	public String toString() {
