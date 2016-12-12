@@ -80,6 +80,21 @@ public class checkYourPrivilages extends HttpServlet {
 			}
 
 		}
+		if (request.getParameter("Kataxwrisi") != null) {
+			if (User.getKataxwrisi() == 1) {
+
+				RequestDispatcher dispatcher = getServletContext()
+						.getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert(\"Check your privilages\");</script>");
+				rd.include(request, response);
+
+			}
+
+		}
 	}
 
 	private void getRoleCookies(HttpServletRequest request, HttpServletResponse response, String sqlInject)

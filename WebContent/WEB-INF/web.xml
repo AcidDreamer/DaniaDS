@@ -21,12 +21,16 @@
     <servlet-class>login_out/logoutServlet.java</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>searchCustomer</servlet-name>
     <servlet-class>employee/searchCustomer.java</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
+  <servlet>
+    <servlet-name>sentApplication</servlet-name>
+    <servlet-class>employee/sentApplication.java</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
   <servlet>
     <servlet-name>checkYourPrivilages</servlet-name>
     <servlet-class>checkFuntions/checkYourPrivilages.java</servlet-class>
