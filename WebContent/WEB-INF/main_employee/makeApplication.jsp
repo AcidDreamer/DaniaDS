@@ -27,10 +27,8 @@
 			Customers Name: <input type="text" value=""
 				placeholder='Username' name="username" /> Application ID: <input
 				type="text" value="" placeholder='Application ID' name="app_code" />
-			Amount Requested: <select name="amount"><option value=2000>2000</option>
-				<option value=4000>4000</option>
-				<option value=8000>8000</option>
-				<option value=15000>15000</option></select><br>
+			Amount Requested: <input type="text" value=""
+				placeholder='Amount' name="amount" /><br>
 			<br> Repay Time: <input type="text" value=""
 				placeholder='Repay Time' name="repayTime" />Buy 
 			Type: <select name="buy_type"><option
@@ -38,7 +36,8 @@
 				<option value=2>Brand New</option></select><br>
 			<br> Drivers License: <input type="text" value=""
 				placeholder='Drivers License' name="drivers_licence" /> Taxes : <input
-				type="text" value="" placeholder='Taxes' name="taxes" />
+				type="text" value="" placeholder='Taxes' name="taxes" /> Commentary : <input
+				type="text" value="" placeholder='Commentary' name="commentary" />
 			<button>Submit</button>
 		</form>
 	</div>

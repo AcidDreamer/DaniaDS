@@ -26,10 +26,11 @@ public class searchCustomer extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("Client");
 		if (request.getParameter("searcher") != null && !(request.getParameter("searcher").equals(""))) {
 			int searchBy = Integer.parseInt(request.getParameter("searchBy"));
 			int searcher = Integer.parseInt(request.getParameter("searcher"));
-			HttpSession session = request.getSession();
 			Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 			PreparedStatement ps = null;
 			ResultSet rs = null;

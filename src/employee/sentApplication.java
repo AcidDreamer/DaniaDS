@@ -28,7 +28,7 @@ public class sentApplication extends HttpServlet {
 		if (request.getParameter("app_code") == null || request.getParameter("taxes") == null || request.getParameter("repayTime") == null
 				|| request.getParameter("drivers_licence").equals("") || request.getParameter("username").equals("")
 				|| request.getParameter("taxes") == null || request.getParameter("app_code") == null || request.getParameter("taxes").equals("") || request.getParameter("repayTime").equals("")
-				|| request.getParameter("taxes").equals("")) {
+				|| request.getParameter("taxes").equals("") || request.getParameter("commentary").equals("")) {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert(\"" + "Form elements cannot be empty ." + "\")</script>");
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
@@ -43,7 +43,7 @@ public class sentApplication extends HttpServlet {
 
 			String drivers_license = request.getParameter("drivers_licence");
 			String username = request.getParameter("username");
-
+			String tekmiriwsi = request.getParameter("commentary");
 			String buyType;
 			client Client;
 			application Application;
@@ -64,20 +64,20 @@ public class sentApplication extends HttpServlet {
 				rs = ps.executeQuery();
 				if (rs != null && rs.next()) {
 					Client = new client(rs.getString("username"), rs.getInt("salary"));
-					Application = new application(id, amount, buyType, drivers_license, taxes, username, repayTime);
+					Application = new application(id, amount, buyType, drivers_license, taxes, username, repayTime,tekmiriwsi);
 					if (!(Application.canGetLoad(Client))) {
 						out.println("<script>alert(\"" + "User cannot get a loan ." + "\")</script>");
 						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
 						rd.include(request, response);
 					} else {
-						ps = con.prepareStatement("INSERT INTO Application VALUES(?,?,?,?,?,?,?,?);");
+						ps = con.prepareStatement("INSERT INTO Application VALUES(?,?,?,?,?,?,?,0,0,?);");
 						ps.setInt(1, Application.getApp_code());
 						ps.setInt(2, Application.getAmount());
 						ps.setInt(3, Application.getRepayTime());
 						ps.setString(4, Application.getBuy_Type());
 						ps.setString(5, Application.getDrivers_licence());
 						ps.setInt(6, Application.getTaxes());
-						ps.setInt(7, Application.getStatus());
+						ps.setString(7, Application.getTekmiriwsi());
 						ps.setString(8, Application.getUsername());
 						ps.executeUpdate();
 						out.println("<script>alert(\"" + "Application Added Succesfully ." + "\")</script>");

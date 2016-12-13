@@ -3,10 +3,9 @@ body {
     background: url('http://www.amazingwallpaperz.com/wp-content/uploads/Classic-Car-High-Quality-Wallpapers.jpg') no-repeat fixed center center;
     background-size: cover;
     font-family: Montserrat;
-    padding-top:2%;
 }
 /*==========================Search Bar=========================*/
-#search{
+.search{
     text-align: center;
     width: 400px;
     padding: 20px;
@@ -16,7 +15,7 @@ body {
     margin: 0 auto;
 }
 
-#search input {
+.search input {
     width: 100%;
     height: 42px;
     box-sizing: border-box;
@@ -49,3 +48,4 @@ body {
 .search button:hover {
     background: #2c6bd6;
 }
+

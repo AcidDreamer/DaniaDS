@@ -30,7 +30,7 @@ header {
 	color: white;
 	background-color: #655fe8;
 	overflow: hidden;
-	padding: 3%;
+	padding: 1%;
 }
 
 header .home {
@@ -55,11 +55,11 @@ header .logout {
 
 header button {
 	width: 100px;
-	background: #7c8c7d;
+	background: #b5b2a0;
 	box-sizing: border-box;
 	border-radius: 5px;
 	border: 1px solid #7c8c7d;
-	color: #fff;
+	color:black;
 	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 12px;
@@ -77,21 +77,23 @@ header input {
 	text-align: center;
 	box-sizing: border-box;
 	border-radius: 5px;
-	border: 1px solid #ccc;
+	border: 1px solid #b5b2a0;
 	margin-bottom: 2px;
 	font-size: 14px;
 	font-family: Montserrat;
 	outline: none;
+	color:black;
 }
 
 header a:link, a:visited {
-	background-color: #7c8c7d;
-	color: white;
+	background-color: #b5b2a0;
 	padding: 14px 25px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	border-radius: 5px;
+	color:black;
+	
 }
 
 a:hover, a:active {

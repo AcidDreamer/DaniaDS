@@ -31,6 +31,12 @@
     <servlet-class>employee/sentApplication.java</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+    <servlet>
+    <servlet-name>approveServlet</servlet-name>
+    <servlet-class>employee/approveServlet.java</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
   <servlet>
     <servlet-name>checkYourPrivilages</servlet-name>
     <servlet-class>checkFuntions/checkYourPrivilages.java</servlet-class>

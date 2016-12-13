@@ -95,23 +95,23 @@ public class client {
 			loanInfo += "The customer cannot take a loan";
 		} else {
 			if (this.salary < 800 && salary >= 400) {
-				loanInfo += "Customer can take a loan of 2000 euros and repay it in 1-3 years.Max CC is 1400cc<br>";
+				loanInfo += "Customer can take a loan of 2000 euros or less and repay it in 1-3 years.Max CC is 1400cc";
 				System.out.println("passed");
 			}
 			if (this.salary < 1200 && salary >= 800) {
-				loanInfo += "Customer can take a loan of 2000 euros and repay it in 1-3 years.Max CC is 1400cc<br>"+
-							"Customer can take a loan of 4000 euros and repay it in 1-4 years.Max CC is 1600cc<br>";
+				loanInfo += "Customer can take a loan of 2000 euros or less  and repay it in 1-3 years.Max CC is 1400cc<br><br>" +
+							"Customer can take a loan of 4000 euros or less  and repay it in 1-4 years.Max CC is 1600cc";
 			}
 			if (this.salary < 1800 && salary >= 1200) {
-				loanInfo += "Customer can take a loan of 2000 euros and repay it in 1-3 years.Max CC is 1400cc<br>"+
-						"Customer can take a loan of 4000 euros and repay it in 1-4 years.Max CC is 1600cc<br>" +
-						"Customer can take a loan of 8000 euros and repay it in 1-5 years.Max CC is 2000cc<br>";
+				loanInfo += "Customer can take a loan of 2000 euros or less  and repay it in 1-3 years.Max CC is 1400cc<br><br>" +
+						"Customer can take a loan of 4000 euros or less  and repay it in 1-4 years.Max CC is 1600cc<br><br>" +
+						"Customer can take a loan of 8000 euros or less  and repay it in 1-5 years.Max CC is 2000cc";
 			}
 			if (this.salary >= 1800) {
-				loanInfo += "Customer can take a loan of 2000 euros and repay it in 1-3 years.Max CC is 1400cc<br>"+
-						"Customer can take a loan of 4000 euros and repay it in 1-4 years.Max CC is 1600cc<br>" +
-						"Customer can take a loan of 8000 euros and repay it in 1-5 years.Max CC is 2000cc<br>"+
-						"Customer can take a loan of 15000 euros and repay it in 1-10 years.Max CC is 2500cc<br>";
+				loanInfo += "Customer can take a loan of 2000 euros or less  and repay it in 1-3 years.Max CC is 1400cc<br><br>" +
+						"Customer can take a loan of 4000 euros or less  and repay it in 1-4 years.Max CC is 1600cc<br><br>" +
+						"Customer can take a loan of 8000 euros or less  and repay it in 1-5 years.Max CC is 2000cc<br><br>"+
+						"Customer can take a loan of 15000 euros or less  and repay it in 1-10 years.Max CC is 2500cc";
 			}
 		}
 		return loanInfo;

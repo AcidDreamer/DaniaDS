@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.application;
 import bean.roles;
 import bean.user;
 
@@ -95,11 +97,27 @@ public class checkYourPrivilages extends HttpServlet {
 			}
 
 		}
+		if (request.getParameter("Egkrisi") != null) {
+			if (User.getEgkrisi() == 1) {
+				getApplicationCookies(request,response);
+				RequestDispatcher dispatcher = getServletContext()
+						.getRequestDispatcher("/WEB-INF/mainDirector/mainDirector.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert(\"Check your privilages\");</script>");
+				rd.include(request, response);
+
+			}
+
+		}
 	}
 
 	private void getRoleCookies(HttpServletRequest request, HttpServletResponse response, String sqlInject)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		session.removeAttribute("Roles");
 		roles Roles = new roles();
 		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 		PreparedStatement ps = null;
@@ -132,6 +150,7 @@ public class checkYourPrivilages extends HttpServlet {
 	private void getRoleCookies(HttpServletRequest request, HttpServletResponse response, String sqlInject,
 			String sqlInject2) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		session.removeAttribute("Roles");
 		roles Roles = new roles();
 		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 		PreparedStatement ps = null;
@@ -147,6 +166,39 @@ public class checkYourPrivilages extends HttpServlet {
 			}
 			Roles.endRole();
 			session.setAttribute("Roles", Roles);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Database connection problem");
+			throw new ServletException("DB Connection problem.");
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				System.out.println("SQLException in closing PreparedStatement or ResultSet");
+			}
+		}
+	}
+
+	private void getApplicationCookies(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("appList");
+		ArrayList<application> appList = new ArrayList<application>();
+		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement("SELECT * FROM Application WHERE status = 0;");
+			rs = ps.executeQuery();
+			while (rs.next() && rs != null) {
+				System.out.println("New Application Added");
+				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
+						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"));
+				appList.add(Application);
+			}
+			session.setAttribute("appList", appList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Database connection problem");

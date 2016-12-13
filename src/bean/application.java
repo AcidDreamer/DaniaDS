@@ -4,18 +4,19 @@ import bean.client;
 
 public class application {
 
-	int app_code;
-	int amount;
+	int app_code; //
+	int amount; //
 	String buy_Type;
-	String drivers_licence;
-	int taxes;
-	int status;
-	String username;
+	String drivers_licence; //
+	int taxes; //
+	int status; //
+	String username; //
 	int repayTime;
+	String tekmiriwsi; //
+	int accepted; //
+	client Client;//
 
-	client Client;
-
-	public application(int app_code, int amount, String buy_Type, String drivers_licence, int taxes, String username,int repayTime) {
+	public application(int app_code, int amount, String buy_Type, String drivers_licence, int taxes, String username,int repayTime ,String tekmiriwsi) {
 		super();
 		this.app_code = app_code;
 		this.amount = amount;
@@ -24,35 +25,52 @@ public class application {
 		this.taxes = taxes;
 		this.username = username;
 		this.repayTime = repayTime;
+		this.tekmiriwsi = tekmiriwsi;
 		this.status = 0;
+		this.accepted = 0;
 	}
 	
 	public boolean canGetLoad(client Client) {
 		if(Client.getSalary() < 400){
 			return false;
 		}
-		if((amount == 2000 && (repayTime==1 || repayTime==2 || repayTime==3 ))){
+		if((amount <= 2000 && (repayTime==1 || repayTime==2 || repayTime==3 ))){
 			if(Client.getSalary() >= 400){
 				return true;
 			}
 		}
-		if((amount == 4000 && (repayTime==1 || repayTime==2 || repayTime==3 || repayTime==4))){
+		if((amount <= 4000 && (repayTime==1 || repayTime==2 || repayTime==3 || repayTime==4))){
 			if(Client.getSalary() >= 800){
 				return true;
 			}
 		}
-		if((amount == 8000 && (repayTime==1 || repayTime==2 || repayTime==3 || repayTime==4 || repayTime==5))){
+		if((amount <= 8000 && (repayTime==1 || repayTime==2 || repayTime==3 || repayTime==4 || repayTime==5))){
 			if(Client.getSalary() >= 1200){
 				return true;
 			}
 		}
-		if((amount == 15000 && (repayTime==1 || repayTime==2 || repayTime==3 || repayTime==4 || repayTime==5 || repayTime==6 || repayTime==7|| repayTime==8 || repayTime==8 || repayTime==9 || repayTime ==10))){
+		if((amount <= 15000 && (repayTime==1 || repayTime==2 || repayTime==3 || repayTime==4 || repayTime==5 || repayTime==6 || repayTime==7|| repayTime==8 || repayTime==8 || repayTime==9 || repayTime ==10))){
 			if(Client.getSalary() >= 1800){
 				return true;
 			}
 		}
 		return false;
 	}
+	
+	public boolean canBeDisproved(client Client) {
+		int salary = Client.getSalary();
+		if(amount<=2000 && salary>=800){
+			return false;
+		}
+		if(amount<=4000 && salary>=1200){
+			return false;
+		}
+		if(amount<=8000 && salary>=1800){
+			return false;
+		}
+		return true;
+	}
+
 
 	public String getUsername() {
 		return username;
@@ -117,5 +135,14 @@ public class application {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+	public String getTekmiriwsi() {
+		return tekmiriwsi;
+	}
+
+	public void setTekmiriwsi(String tekmiriwsi) {
+		this.tekmiriwsi = tekmiriwsi;
+	}
+	
 
 }

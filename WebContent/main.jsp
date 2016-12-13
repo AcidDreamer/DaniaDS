@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="css/main.css" rel="stylesheet" type="text/css"/>
 <%
-//allow access only if session exists
 user User1 = (user) session.getAttribute("User");
 if (session.getAttribute("User") == null || User1.getRole().equals("Client") ) {
         response.sendRedirect("index.jsp");
@@ -38,7 +37,7 @@ if (cookies != null) {
 	<button name="Kataxwrisi">Kataxwrisi</button>
 	<button name="Ypologismos">Ypologismos</button>
 	<button name="Tropopoiisi">Tropopoiisi</button>
-	<button name="Egkrisi">Egkrisi</button>
+	<button name="Egkrisi">Egkrisi Aitisis</button>
 	<button name="DiaxeirisiXristwn">Diaxeirisi Xristwn</button>
 	<button name="DiaxeirisiRolwn">Diaxeirisi Rolwn</button>
 	<button name="DiaxeirisiYpiresiwn">Diaxeirisi Ypiresiwn</button>

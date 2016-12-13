@@ -11,7 +11,7 @@
 <style>
 .CustomersInfo{
     text-align: center;
-    font-size:14px;
+    font-size:18px;
     width: 100%;
     padding: 20px;
     background: #fff;
@@ -21,9 +21,16 @@
     color:black;
 
 }
+.CustomersInfo p{
+	padding-top:1%;
+	padding-bottom:1%;
+	font-size:18px;
+	border-radius: 5px;
+    border:5px solid #7c8c7d;
+	
+}
 
 </style>
-
 </head>
 <body>
 <div id='search'>
