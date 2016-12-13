@@ -23,7 +23,7 @@
 				if (!appList.isEmpty()) {
 					for (int i = 0; i < appList.size(); i++) {
 						Application = appList.get(i);
-						out.println("<form  class=\"approveClass\" method=\"post\" action=\"approveServlet\">");
+						out.println("<form  class=\"approveClass\" method=\"post\" action=\"editApplication\">");
 						out.println("Application Code : " + Application.getApp_code() + "<br>");
 						out.println(" Client : " + Application.getUsername() + "<br>");
 						out.println(" Drivers License : " + Application.getDrivers_licence() + "<br>");
@@ -31,9 +31,9 @@
 						out.println(" Buy Type : " + Application.getBuy_Type() + "<br>");
 						out.println(" Amount : " + Application.getAmount() + "<br>");
 						out.println(" Repay Time  : " + Application.getRepayTime() + " years " + "<br>");
-						out.println("Commentary : " + Application.getTekmiriwsi() + "<br><br>");
-						out.println("  <input type=\"radio\" name=\"approval\" value=\"approve\"> Approve");
-						out.println("  <input type=\"radio\" name=\"approval\" value=\"disapprove\"> Disapprove");
+						out.println("Commentary : " + Application.getTekmiriwsi() + "<br><br>Change the amount of the loan :<br> ");
+						out.println("  <input type=\"text\" name=\"newAmount\" placeholder=\"New amount\"><br>Provide some extra commentary : <br><br> ");
+						out.println("  <input type=\"text\" name=\"newCommentary\" placeholder=\"New amount\"><br> ");
 						out.println("<input type=\"hidden\" name=\"app_code\" value=\"" + Application.getApp_code()
 								+ "\" />");
 						out.println("<input type=\"hidden\" name=\"username\" value=\"" + Application.getUsername()
@@ -83,8 +83,20 @@
 	font-family: Montserrat;
 	outline: none;
 	cursor: pointer;
-	margin-left: 10%;
 	margin-bottom: 1%;
+}
+
+input{
+	height:20px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 10px 0 10px;
+    outline: none;  
 }
 </style>
 

@@ -122,6 +122,19 @@ public class checkYourPrivilages extends HttpServlet {
 			}
 
 		}
+		if (request.getParameter("Tropopoiisi") != null) {
+			if (User.getTropopoiisi() == 1) {
+				getApplicationCookies(request, response);
+				rd = getServletContext().getRequestDispatcher("/WEB-INF/mainDirector/editDirector.jsp");
+				rd.forward(request, response);
+			} else {
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
+				out.println("<script>alert(\"Check your privilages\");</script>");
+				rd.include(request, response);
+
+			}
+
+		}
 	}
 
 	private void getRoleCookies(HttpServletRequest request, HttpServletResponse response, String sqlInject)
