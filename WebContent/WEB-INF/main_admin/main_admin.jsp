@@ -20,7 +20,7 @@
 				<button class="AddBtn">Add User</button>		    	
 				<button class="EditBtn">Edit User</button>
 			    <button class="DeleteBtn">Remove User</button>
-	</div>
+	</div>		
 	<div class="Display">
 	
 		<!-- Prosthetw xristi -->
@@ -33,7 +33,7 @@
 					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" name="username" /></div>
 					<div class = "TextSpans">Password:<input type="text" value="" placeholder="Password" name="password" /></div><br>
 					<div class = "TextSpans">Full name:<input type="text" value="" placeholder="Full name" name="full_name" /></div><br>
-					<div class = "TextSpans">ATM:<input type="text" value="" placeholder="ATM" name="atm" /></div>
+					<div class = "TextSpans">AFM:<input type="text" value="" placeholder="ATM" name="atm" /></div>
 					<div class = "TextSpans">IDN:<input type="text" value="" placeholder="IDN" name="adt" /></div><br>
 					<div class = "TextSpans">Salary:<input type="text" value="" placeholder="Salary" name="salary" /></div>
 					<div class = "TextSpans">Phone:<input type="text" value="" placeholder="Phone" name="phone" /></div>

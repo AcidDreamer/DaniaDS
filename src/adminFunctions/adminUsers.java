@@ -23,7 +23,7 @@ public class adminUsers extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getParameter("username").equals("") || request.getParameter("password").equals("")|| request.getParameter("full_name").equals("")) {
+		if (request.getParameter("username").equals("")  || request.getParameter("username") == null) {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert(\"" + "Form elements cannot be empty ." + "\")</script>");
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/main_admin/main_admin.jsp");
