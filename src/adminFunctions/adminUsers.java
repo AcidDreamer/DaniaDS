@@ -23,12 +23,13 @@ public class adminUsers extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getParameter("username").equals("")  || request.getParameter("username") == null) {
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert(\"" + "Form elements cannot be empty ." + "\")</script>");
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/main_admin/main_admin.jsp");
-			rd.include(request, response);
+		PrintWriter out = response.getWriter();
+		RequestDispatcher rd;
 
+		if (request.getParameter("username").equals("") || request.getParameter("username") == null) {
+			out.println("<script>alert(\"" + "Form elements cannot be empty ." + "\")</script>");
+			rd = getServletContext().getRequestDispatcher("/WEB-INF/main_admin/main_admin.jsp");
+			rd.include(request, response);
 		} else {
 			if (request.getParameter("ClientAddBtn") != null) {
 				String username = request.getParameter("username");
@@ -46,8 +47,7 @@ public class adminUsers extends HttpServlet {
 				}
 
 				if (errorMsg != null) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-					PrintWriter out = response.getWriter();
+					rd = getServletContext().getRequestDispatcher("/main.jsp");
 					out.println("<script>alert(\"" + errorMsg + "\")</script>");
 					rd.include(request, response);
 
@@ -69,13 +69,11 @@ public class adminUsers extends HttpServlet {
 						ps.setInt(4, phone);
 						ps.setString(5, username);
 						rowsUpdated = ps.executeUpdate();
-						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-						PrintWriter out = response.getWriter();
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						out.println("<script>alert(\"" + "User added successfully" + "\")</script>");
 						rd.include(request, response);
 					} catch (SQLException e) {
-						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-						PrintWriter out = response.getWriter();
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						out.println("<script>alert(\"" + e + "\")</script>");
 						rd.include(request, response);
 						throw new ServletException("DB Connection problem.");
@@ -100,8 +98,7 @@ public class adminUsers extends HttpServlet {
 					errorMsg = "Fields can't be null or empty and you cannot select client as an account type";
 				}
 				if (errorMsg != null) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-					PrintWriter out = response.getWriter();
+					rd = getServletContext().getRequestDispatcher("/main.jsp");
 					out.println("<script>alert(\"" + errorMsg + "\")</script>");
 					rd.include(request, response);
 				} else {
@@ -115,13 +112,11 @@ public class adminUsers extends HttpServlet {
 						ps.setString(3, full_name);
 						ps.setString(4, role);
 						int rowsUpdated = ps.executeUpdate();
-						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-						PrintWriter out = response.getWriter();
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						out.println("<script>alert(\"" + "User added successfully" + "\")</script>");
 						rd.include(request, response);
 					} catch (SQLException e) {
-						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-						PrintWriter out = response.getWriter();
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						out.println("<script>alert(\"" + e + "\")</script>");
 						rd.include(request, response);
 						throw new ServletException("DB Connection problem.");
@@ -145,8 +140,7 @@ public class adminUsers extends HttpServlet {
 						ps = con.prepareStatement("DELETE FROM User WHERE username=?;");
 						ps.setString(1, username);
 						ps.executeUpdate();
-						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-						PrintWriter out = response.getWriter();
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						out.println("<script>alert(\"" + "User removed successfully" + "\")</script>");
 						rd.include(request, response);
 					} else {
@@ -157,16 +151,14 @@ public class adminUsers extends HttpServlet {
 						ps.setString(1, username);
 						ps.executeUpdate();
 
-						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-						PrintWriter out = response.getWriter();
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						out.println("<script>alert(\"" + "User removed successfully" + "\")</script>");
 						rd.include(request, response);
 
 					}
 				} catch (SQLException e) {
 					System.out.println("Database connection problem");
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-					PrintWriter out = response.getWriter();
+					rd = getServletContext().getRequestDispatcher("/main.jsp");
 					out.println("<script>alert(\"" + e + "\")</script>");
 					rd.include(request, response);
 					throw new ServletException("DB Connection problem.");
