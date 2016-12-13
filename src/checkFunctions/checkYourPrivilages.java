@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.application;
+import bean.client;
 import bean.roles;
 import bean.user;
 
@@ -107,6 +108,9 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 		if (request.getParameter("Listes") != null) {
 			if (User.getYpologismos() == 1) {
+				getApplicationApprovedCookies(request, response);
+				getApplicationDisprovedCookies(request, response);
+				getAllClientCookies(request, response);
 				getApplicationCookies(request, response);
 				rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/list.jsp");
 				rd.forward(request, response);
@@ -198,7 +202,6 @@ public class checkYourPrivilages extends HttpServlet {
 			ps = con.prepareStatement("SELECT * FROM Application WHERE status = 0;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
-				System.out.println("New Application Added");
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
 						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
 						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"));
@@ -218,4 +221,102 @@ public class checkYourPrivilages extends HttpServlet {
 			}
 		}
 	}
+
+	private void getApplicationApprovedCookies(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("appListApproved");
+		ArrayList<application> appList = new ArrayList<application>();
+		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement("SELECT * FROM Application WHERE status = 1 AND accepted =1;");
+			rs = ps.executeQuery();
+			while (rs.next() && rs != null) {
+				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
+						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"));
+				appList.add(Application);
+			}
+			session.setAttribute("appListApproved", appList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Database connection problem");
+			throw new ServletException("DB Connection problem.");
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				System.out.println("SQLException in closing PreparedStatement or ResultSet");
+			}
+		}
+	}
+
+	private void getApplicationDisprovedCookies(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("appListDisproved");
+		ArrayList<application> appList = new ArrayList<application>();
+		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement("SELECT * FROM Application WHERE status = 1 AND accepted=0;");
+			rs = ps.executeQuery();
+			while (rs.next() && rs != null) {
+				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
+						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"));
+				appList.add(Application);
+			}
+			session.setAttribute("appListDisproved", appList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Database connection problem");
+			throw new ServletException("DB Connection problem.");
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				System.out.println("SQLException in closing PreparedStatement or ResultSet");
+			}
+		}
+	}
+
+	private void getAllClientCookies(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("clientList");
+		ArrayList<client> clientList = new ArrayList<client>();
+		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement("SELECT User.username,full_name,id,atm,adt,salary,phone FROM User,Client WHERE User.username = Client.username ;");
+			rs = ps.executeQuery();
+			while (rs.next() && rs != null) {
+				while (rs.next()) {
+					client Client = new client(rs.getString("username"), rs.getString("full_name"), rs.getInt("atm"),
+							rs.getInt("adt"), rs.getInt("salary"), rs.getInt("phone"), rs.getInt("id"));
+					clientList.add(Client);
+				}
+			}
+			session.setAttribute("clientList", clientList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Database connection problem");
+			throw new ServletException("DB Connection problem.");
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				System.out.println("SQLException in closing PreparedStatement or ResultSet");
+			}
+		}
+	}
+
 }
