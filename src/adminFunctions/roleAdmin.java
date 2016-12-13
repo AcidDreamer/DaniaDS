@@ -23,6 +23,9 @@ public class roleAdmin extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		RequestDispatcher rd;
+		PrintWriter out = response.getWriter();
+
 		if (request.getParameter("add") != null) {
 			String rolename = request.getParameter("rolename");
 			int elegxos;
@@ -72,13 +75,11 @@ public class roleAdmin extends HttpServlet {
 				ps.setInt(5, Tropopoiisi);
 				ps.setInt(6, Egkrisi);
 				int rowsUpdated = ps.executeUpdate();
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-				PrintWriter out = response.getWriter();
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"" + "Role added successfully" + "\")</script>");
 				rd.include(request, response);
 			} catch (SQLException e) {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-				PrintWriter out = response.getWriter();
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"" + e + "\")</script>");
 				rd.include(request, response);
 				throw new ServletException("DB Connection problem.");
@@ -96,8 +97,7 @@ public class roleAdmin extends HttpServlet {
 			String toRemove;
 			toRemove = request.getParameter("allRoles");
 			if (toRemove.equals("Administrator")) {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-				PrintWriter out = response.getWriter();
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"You are not allowed to remove this role -> Administrator\");</script>");
 				rd.include(request, response);
 
@@ -110,14 +110,12 @@ public class roleAdmin extends HttpServlet {
 					ps = con.prepareStatement("DELETE FROM role WHERE rolename=?;");
 					ps.setString(1, toRemove);
 					ps.executeUpdate();
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-					PrintWriter out = response.getWriter();
+					rd = getServletContext().getRequestDispatcher("/main.jsp");
 					out.println("<script>alert(\"" + "Role removed successfully" + "\")</script>");
 					rd.include(request, response);
 				} catch (SQLException e) {
 					System.out.println("Database connection problem");
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-					PrintWriter out = response.getWriter();
+					rd = getServletContext().getRequestDispatcher("/main.jsp");
 					out.println("<script>alert(\"" + e + "\")</script>");
 					rd.include(request, response);
 					throw new ServletException("DB Connection problem.");

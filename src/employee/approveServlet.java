@@ -63,14 +63,16 @@ public class approveServlet extends HttpServlet {
 				if (Application != null && Client != null) {
 					if (Application.canBeDisproved(Client) && approved.equals("disapprove")) {
 						ps = con.prepareStatement("UPDATE Application SET status = 1 WHERE app_code = ?;");
-						System.out.println("1");
 						ps.setInt(1, app_code);
 						ps.executeUpdate();
+						out.println("<script>alert(\"" + "Application disapproved!" + "\")</script>");
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
+						rd.include(request, response);
 					} else if (Application.canBeDisproved(Client) && approved.equals("approve")) {
 						ps = con.prepareStatement("UPDATE Application SET status = 1,accepted =1  WHERE app_code = ?;");
-						System.out.println("2");
 						ps.setInt(1, app_code);
 						ps.executeUpdate();
+						out.println("<script>alert(\"" + "Application Approved!" + "\")</script>");
 						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						rd.include(request, response);
 					} else if (!(Application.canBeDisproved(Client)) && approved.equals("disapprove")) {
@@ -79,9 +81,9 @@ public class approveServlet extends HttpServlet {
 						rd.include(request, response);
 					} else if (!(Application.canBeDisproved(Client)) && approved.equals("approve")) {
 						ps = con.prepareStatement("UPDATE Application SET status = 1,accepted =1  WHERE app_code = ?;");
-						System.out.println("4");
 						ps.setInt(1, app_code);
 						ps.executeUpdate();
+						out.println("<script>alert(\"" + "Application Approved!" + "\")</script>");
 						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						rd.include(request, response);
 					}
@@ -102,5 +104,4 @@ public class approveServlet extends HttpServlet {
 			}
 		}
 	}
-
 }

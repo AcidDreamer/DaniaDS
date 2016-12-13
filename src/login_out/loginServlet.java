@@ -58,7 +58,6 @@ public class loginServlet extends HttpServlet {
 				} else {
 					RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
 					PrintWriter out = response.getWriter();
-					System.out.println("User not found with username=" + username);
 					out.println("<script>alert(\"Incorrect credentials\");</script>");
 					rd.include(request, response);
 				}

@@ -29,18 +29,18 @@ public class checkYourPrivilages extends HttpServlet {
 		HttpSession session = request.getSession();
 		user User = (user) session.getAttribute("User");
 		int isAdmin = User.getIsAdmin();
+		RequestDispatcher rd;
+		PrintWriter out = response.getWriter();
 
 		if (request.getParameter("DiaxeirisiXristwn") != null) {
 			if (isAdmin == 1) {
 				String sqlInject = "Administrator";
 
 				getRoleCookies(request, response, sqlInject);
-				RequestDispatcher dispatcher = getServletContext()
-						.getRequestDispatcher("/WEB-INF/main_admin/main_admin.jsp");
-				dispatcher.forward(request, response);
+				rd = getServletContext().getRequestDispatcher("/WEB-INF/main_admin/main_admin.jsp");
+				rd.forward(request, response);
 			} else {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-				PrintWriter out = response.getWriter();
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"Check your privilages\");</script>");
 				rd.include(request, response);
 
@@ -59,8 +59,7 @@ public class checkYourPrivilages extends HttpServlet {
 				dispatcher.forward(request, response);
 
 			} else {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-				PrintWriter out = response.getWriter();
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"Check your privilages\");</script>");
 				rd.include(request, response);
 
@@ -70,12 +69,10 @@ public class checkYourPrivilages extends HttpServlet {
 		if (request.getParameter("Elegxos") != null) {
 			if (User.getElegxos() == 1) {
 
-				RequestDispatcher dispatcher = getServletContext()
-						.getRequestDispatcher("/WEB-INF/main_employee/main_employee.jsp");
-				dispatcher.forward(request, response);
+				rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/main_employee.jsp");
+				rd.forward(request, response);
 			} else {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-				PrintWriter out = response.getWriter();
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"Check your privilages\");</script>");
 				rd.include(request, response);
 
@@ -85,12 +82,10 @@ public class checkYourPrivilages extends HttpServlet {
 		if (request.getParameter("Kataxwrisi") != null) {
 			if (User.getKataxwrisi() == 1) {
 
-				RequestDispatcher dispatcher = getServletContext()
-						.getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
-				dispatcher.forward(request, response);
+				rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
+				rd.forward(request, response);
 			} else {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-				PrintWriter out = response.getWriter();
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"Check your privilages\");</script>");
 				rd.include(request, response);
 
@@ -99,13 +94,11 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 		if (request.getParameter("Egkrisi") != null) {
 			if (User.getEgkrisi() == 1) {
-				getApplicationCookies(request,response);
-				RequestDispatcher dispatcher = getServletContext()
-						.getRequestDispatcher("/WEB-INF/mainDirector/mainDirector.jsp");
-				dispatcher.forward(request, response);
+				getApplicationCookies(request, response);
+				rd = getServletContext().getRequestDispatcher("/WEB-INF/mainDirector/mainDirector.jsp");
+				rd.forward(request, response);
 			} else {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-				PrintWriter out = response.getWriter();
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"Check your privilages\");</script>");
 				rd.include(request, response);
 

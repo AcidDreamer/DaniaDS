@@ -18,7 +18,6 @@ public class AppContextListener implements ServletContextListener {
                 try {
                         DBConnectionManager connectionManager = new DBConnectionManager(dbURL, user, pwd);
                         ctx.setAttribute("DBConnection", connectionManager.getConnection());
-                        System.out.println("DB Connection initialized successfully.");
                 } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                 } catch (SQLException e) {
@@ -29,7 +28,6 @@ public class AppContextListener implements ServletContextListener {
                 Connection con = (Connection) servletContextEvent.getServletContext().getAttribute("DBConnection");
                 try {
                         con.close();
-                        System.out.println("DB Connection closed successfully.");
                 } catch (SQLException e) {
                         e.printStackTrace();
                 }
