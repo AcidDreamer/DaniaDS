@@ -35,7 +35,7 @@ if (cookies != null) {
 	<form action="checkYourPrivilages" method="post">
 	<button name="Elegxos">Elegxos</button>
 	<button name="Kataxwrisi">Kataxwrisi</button>
-	<button name="Ypologismos">Ypologismos</button>
+	<button name="Listes">Listes</button>
 	<button name="Tropopoiisi">Tropopoiisi</button>
 	<button name="Egkrisi">Egkrisi Aitisis</button>
 	<button name="DiaxeirisiXristwn">Diaxeirisi Xristwn</button>

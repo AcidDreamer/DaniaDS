@@ -105,6 +105,19 @@ public class checkYourPrivilages extends HttpServlet {
 			}
 
 		}
+		if (request.getParameter("Listes") != null) {
+			if (User.getYpologismos() == 1) {
+				getApplicationCookies(request, response);
+				rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/list.jsp");
+				rd.forward(request, response);
+			} else {
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
+				out.println("<script>alert(\"Check your privilages\");</script>");
+				rd.include(request, response);
+
+			}
+
+		}
 	}
 
 	private void getRoleCookies(HttpServletRequest request, HttpServletResponse response, String sqlInject)
