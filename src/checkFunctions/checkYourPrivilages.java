@@ -212,12 +212,12 @@ public class checkYourPrivilages extends HttpServlet {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = con.prepareStatement("SELECT * FROM Application WHERE status = 0;");
+			ps = con.prepareStatement("SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 0 AND accepted=0;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
 						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
-						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"));
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),rs.getString("tekmiriwsiDieuthinti"));
 				appList.add(Application);
 			}
 			session.setAttribute("appList", appList);
@@ -244,12 +244,12 @@ public class checkYourPrivilages extends HttpServlet {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = con.prepareStatement("SELECT * FROM Application WHERE status = 1 AND accepted =1;");
+			ps = con.prepareStatement("SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=1;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
 						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
-						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"));
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),rs.getString("tekmiriwsiDieuthinti"));
 				appList.add(Application);
 			}
 			session.setAttribute("appListApproved", appList);
@@ -276,12 +276,12 @@ public class checkYourPrivilages extends HttpServlet {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = con.prepareStatement("SELECT * FROM Application WHERE status = 1 AND accepted=0;");
+			ps = con.prepareStatement("SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=0;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
 						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
-						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"));
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),rs.getString("tekmiriwsiDieuthinti"));
 				appList.add(Application);
 			}
 			session.setAttribute("appListDisproved", appList);

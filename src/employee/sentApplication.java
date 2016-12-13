@@ -64,7 +64,7 @@ public class sentApplication extends HttpServlet {
 				rs = ps.executeQuery();
 				if (rs != null && rs.next()) {
 					Client = new client(rs.getString("username"), rs.getInt("salary"));
-					Application = new application(id, amount, buyType, drivers_license, taxes, username, repayTime,tekmiriwsi);
+					Application = new application(id, amount, buyType, drivers_license, taxes, username, repayTime,tekmiriwsi,"");
 					if (!(Application.canGetLoad(Client))) {
 						out.println("<script>alert(\"" + "User cannot get a loan ." + "\")</script>");
 						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
@@ -79,6 +79,9 @@ public class sentApplication extends HttpServlet {
 						ps.setInt(6, Application.getTaxes());
 						ps.setString(7, Application.getTekmiriwsi());
 						ps.setString(8, Application.getUsername());
+						ps.executeUpdate();
+						ps = con.prepareStatement("INSERT INTO Director VALUES(\"\",?);");
+						ps.setInt(1, Application.getApp_code());
 						ps.executeUpdate();
 						out.println("<script>alert(\"" + "Application Added Succesfully ." + "\")</script>");
 						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");

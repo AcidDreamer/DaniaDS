@@ -79,7 +79,8 @@
 						out.println(" Buy Type : " + Application.getBuy_Type() + "<br>");
 						out.println(" Amount : " + Application.getAmount() + "<br>");
 						out.println(" Repay Time  : " + Application.getRepayTime() + " years " + "<br>");
-						out.println("Commentary : " + Application.getTekmiriwsi() + "<br></div>");
+						out.println("Commentary : " + Application.getTekmiriwsi() + "<br>");
+						out.println("Modifications : " + Application.getTekmiriwsiEdit() + "<br></div>");
 					}
 				} else {
 					out.println("<b>No applications are currently available.</b>");
@@ -105,7 +106,8 @@
 						out.println(" Buy Type : " + Application.getBuy_Type() + "<br>");
 						out.println(" Amount : " + Application.getAmount() + "<br>");
 						out.println(" Repay Time  : " + Application.getRepayTime() + " years " + "<br>");
-						out.println("Commentary : " + Application.getTekmiriwsi() + "<br></div>");
+						out.println("Commentary : " + Application.getTekmiriwsi() + "<br>");
+						out.println("Modifications : " + Application.getTekmiriwsiEdit() + "<br></div> ");
 					}
 				} else {
 					out.println("<b>No approved applications.</b>");
@@ -130,7 +132,9 @@
 						out.println(" Buy Type : " + Application.getBuy_Type() + "<br>");
 						out.println(" Amount : " + Application.getAmount() + "<br>");
 						out.println(" Repay Time  : " + Application.getRepayTime() + " years " + "<br>");
-						out.println("Commentary : " + Application.getTekmiriwsi() + "<br></div>");
+						out.println("Commentary : " + Application.getTekmiriwsi() + "<br>");
+						out.println("Modifications : " + Application.getTekmiriwsiEdit() + "<br></div> ");
+
 					}
 				} else {
 					out.println("<b>No applications disproved applications.</b>");

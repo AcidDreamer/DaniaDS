@@ -31,7 +31,8 @@
 						out.println(" Buy Type : " + Application.getBuy_Type() + "<br>");
 						out.println(" Amount : " + Application.getAmount() + "<br>");
 						out.println(" Repay Time  : " + Application.getRepayTime() + " years " + "<br>");
-						out.println("Commentary : " + Application.getTekmiriwsi() + "<br><br>Change the amount of the loan :<br> ");
+						out.println("Commentary : " + Application.getTekmiriwsi() + "<br><br>");
+						out.println("Modifications : " + Application.getTekmiriwsiEdit() + "<br><br>Change the amount of the loan :<br> ");
 						out.println("  <input type=\"text\" name=\"newAmount\" placeholder=\"New amount\"><br>Provide some extra commentary : <br><br> ");
 						out.println("  <input type=\"text\" name=\"newCommentary\" placeholder=\"New amount\"><br> ");
 						out.println("<input type=\"hidden\" name=\"app_code\" value=\"" + Application.getApp_code()

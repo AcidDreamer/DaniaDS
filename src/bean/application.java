@@ -13,10 +13,11 @@ public class application {
 	String username; //
 	int repayTime;
 	String tekmiriwsi; //
+	String tekmiriwsiEdit;
 	int accepted; //
 	client Client;//
 
-	public application(int app_code, int amount, String buy_Type, String drivers_licence, int taxes, String username,int repayTime ,String tekmiriwsi) {
+	public application(int app_code, int amount, String buy_Type, String drivers_licence, int taxes, String username,int repayTime ,String tekmiriwsi,String tekmiriwsiEdit) {
 		super();
 		this.app_code = app_code;
 		this.amount = amount;
@@ -28,6 +29,7 @@ public class application {
 		this.tekmiriwsi = tekmiriwsi;
 		this.status = 0;
 		this.accepted = 0;
+		this.tekmiriwsiEdit =tekmiriwsiEdit;
 	}
 	
 	public boolean canGetLoad(client Client) {
@@ -142,6 +144,14 @@ public class application {
 
 	public void setTekmiriwsi(String tekmiriwsi) {
 		this.tekmiriwsi = tekmiriwsi;
+	}
+
+	public String getTekmiriwsiEdit() {
+		return tekmiriwsiEdit;
+	}
+
+	public void setTekmiriwsiEdit(String tekmiriwsiEdit) {
+		this.tekmiriwsiEdit = tekmiriwsiEdit;
 	}
 	
 

@@ -58,7 +58,7 @@ public class approveServlet extends HttpServlet {
 							rs.getInt("adt"), rs.getInt("salary"), rs.getInt("phone"), rs.getInt("id"));
 					Application = new application(rs.getInt("app_code"), rs.getInt("amount"), rs.getString("buy_type"),
 							rs.getString("drivers_license"), rs.getInt("taxes"), rs.getString("username"),
-							rs.getInt("repayTime"), rs.getString("tekmiriwsi"));
+							rs.getInt("repayTime"), rs.getString("tekmiriwsi"),"");
 				}
 				if (Application != null && Client != null) {
 					if (Application.canBeDisproved(Client) && approved.equals("disapprove")) {

@@ -46,7 +46,7 @@ public class editApplication extends HttpServlet {
 				ps.setInt(1, newAmount);
 				ps.setInt(2, app_code);
 				ps.executeUpdate();
-				ps = con.prepareStatement("INSERT INTO Director VALUES (?,?);");
+				ps = con.prepareStatement("UPDATE Director SET tekmiriwsiDieuthinti = ? WHERE app_code = ?  ;");
 				ps.setString(1, newCommentary);
 				ps.setInt(2, app_code);
 				ps.executeUpdate();
