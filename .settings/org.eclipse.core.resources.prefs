@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/adminFunctions/adminUsers.java=UTF-8
+encoding//src/adminFunctions/roleAdmin.java=UTF-8
+encoding//src/checkFunctions/checkYourPrivilages.java=UTF-8
 encoding//src/util/sentMail.java=UTF-8

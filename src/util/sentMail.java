@@ -29,7 +29,7 @@ public class sentEmail extends HttpServlet{
       // Setup mail server
       properties.setProperty("mail.smtp.host", host);
  
-      // Get the default Session object.
+      // Get the default Session.
       Session session = Session.getDefaultInstance(properties);
       
 	  // Set response content type

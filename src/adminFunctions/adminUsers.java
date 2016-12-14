@@ -27,11 +27,16 @@ public class adminUsers extends HttpServlet {
 		RequestDispatcher rd;
 
 		if (request.getParameter("username").equals("") || request.getParameter("username") == null) {
+			// Έλενχει φόρμας και redirect με κατάλληλο μήνυμα σε περίπτωση
+			// σφάλματος
 			out.println("<script>alert(\"" + "Form elements cannot be empty ." + "\")</script>");
 			rd = getServletContext().getRequestDispatcher("/WEB-INF/main_admin/main_admin.jsp");
 			rd.include(request, response);
 		} else {
 			if (request.getParameter("ClientAddBtn") != null) {
+				// Σε περίπτωση που πατηθεί το submit στην φόρμα addClient
+				// παίρνουμε
+				// τις μεταβλητές
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 				String full_name = request.getParameter("full_name");
@@ -41,26 +46,29 @@ public class adminUsers extends HttpServlet {
 				int phone = Integer.parseInt((request.getParameter("phone")));
 
 				String errorMsg = null;
+				// Περισσότεροι έλεγχοι
 				if (username == null || username.equals("") || password == null || password.equals("")
 						|| full_name == null || full_name.equals("") || adt == 0 || salary == 0 || phone == 0) {
 					errorMsg = "Fields can't be null or empty";
 				}
 
 				if (errorMsg != null) {
+					// ενημέρωση για σφάλμα και redirect.
 					rd = getServletContext().getRequestDispatcher("/main.jsp");
 					out.println("<script>alert(\"" + errorMsg + "\")</script>");
 					rd.include(request, response);
-
 				} else {
+					// Ετοιμάζουμε την σύνδεση και τα αντικείμενα που θα
+					// χρησιμοποιήσουμε
 					Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 					PreparedStatement ps = null;
-					ResultSet rs = null;
 					try {
+						// Φτιάχνουμε το sql Statement
 						ps = con.prepareStatement("INSERT INTO User VALUES(?,?,?,\"Client\");");
 						ps.setString(1, username);
 						ps.setString(2, password);
 						ps.setString(3, full_name);
-						int rowsUpdated = ps.executeUpdate();
+						ps.executeUpdate();
 						ps = con.prepareStatement(
 								"INSERT INTO Client(atm,adt,salary,phone,username) VALUES(?,?,?,?,?);");
 						ps.setInt(1, atm);
@@ -68,8 +76,10 @@ public class adminUsers extends HttpServlet {
 						ps.setInt(3, salary);
 						ps.setInt(4, phone);
 						ps.setString(5, username);
-						rowsUpdated = ps.executeUpdate();
+						// Εκτελούμε το statement
+						ps.executeUpdate();
 						rd = getServletContext().getRequestDispatcher("/main.jsp");
+						// Ενημερώνουμε τον χρήστη και κάνουμε redirect
 						out.println("<script>alert(\"" + "User added successfully" + "\")</script>");
 						rd.include(request, response);
 					} catch (SQLException e) {
@@ -88,6 +98,8 @@ public class adminUsers extends HttpServlet {
 				}
 			}
 			if (request.getParameter("OtherAddBtn") != null) {
+				// Παρόμοιο με το παραπάνω ,αλλά το χρησιμοποιούμε για
+				// δημιουργεία χρήστη που δεν είναι πελάτης
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 				String full_name = request.getParameter("full_name");
@@ -104,14 +116,13 @@ public class adminUsers extends HttpServlet {
 				} else {
 					Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 					PreparedStatement ps = null;
-					ResultSet rs = null;
 					try {
 						ps = con.prepareStatement("INSERT INTO User VALUES(?,?,?,?);");
 						ps.setString(1, username);
 						ps.setString(2, password);
 						ps.setString(3, full_name);
 						ps.setString(4, role);
-						int rowsUpdated = ps.executeUpdate();
+						ps.executeUpdate();
 						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						out.println("<script>alert(\"" + "User added successfully" + "\")</script>");
 						rd.include(request, response);
@@ -130,13 +141,14 @@ public class adminUsers extends HttpServlet {
 				}
 			}
 			if (request.getParameter("deleteBtn") != null) {
+				// Παρόμοιο με το πρώτο μόνο που κάνουμε delete
 				String username = request.getParameter("username");
 				String accountType = request.getParameter("allRoles");
 				Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 				PreparedStatement ps = null;
-				ResultSet rs = null;
 				try {
 					if (!(accountType.equals("Client"))) {
+						// Σε περίπτωση που είναι χρήστης
 						ps = con.prepareStatement("DELETE FROM User WHERE username=?;");
 						ps.setString(1, username);
 						ps.executeUpdate();
@@ -144,6 +156,7 @@ public class adminUsers extends HttpServlet {
 						out.println("<script>alert(\"" + "User removed successfully" + "\")</script>");
 						rd.include(request, response);
 					} else {
+						// Σε περίπτωση που δεν είναι χρήστης
 						ps = con.prepareStatement("DELETE FROM Client WHERE username=?;");
 						ps.setString(1, username);
 						ps.executeUpdate();
@@ -170,7 +183,6 @@ public class adminUsers extends HttpServlet {
 					}
 				}
 			}
-
 		}
 	}
 }

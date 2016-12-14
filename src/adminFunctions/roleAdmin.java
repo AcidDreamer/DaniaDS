@@ -27,6 +27,8 @@ public class roleAdmin extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		if (request.getParameter("add") != null) {
+			// Σε περίπτωση που δημιουργούμαι νέο ρόλο παίρνουμε τις τιμές που
+			// έδωσε ο χρήστης
 			String rolename = request.getParameter("rolename");
 			int elegxos;
 			if (request.getParameter("Elegxos") == null) {
@@ -62,11 +64,12 @@ public class roleAdmin extends HttpServlet {
 			} else {
 				Egkrisi = 1;
 			}
-
+			// Ετοιμάζουμε την σύνδεση και τα αντικείμενα που θα
+			// χρησιμοποιήσουμε
 			Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 			PreparedStatement ps = null;
-			ResultSet rs = null;
 			try {
+				// Φτιάχνουμε το sql Statement
 				ps = con.prepareStatement("INSERT INTO role VALUES(?,?,?,?,?,?,0,0);");
 				ps.setString(1, rolename);
 				ps.setInt(2, elegxos);
@@ -74,8 +77,10 @@ public class roleAdmin extends HttpServlet {
 				ps.setInt(4, Ypologismos);
 				ps.setInt(5, Tropopoiisi);
 				ps.setInt(6, Egkrisi);
-				int rowsUpdated = ps.executeUpdate();
+				// Εκτελούμε το statement
+				ps.executeUpdate();
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
+				// Ενημερώνουμε τον χρήστη και κάνουμε redirect
 				out.println("<script>alert(\"" + "Role added successfully" + "\")</script>");
 				rd.include(request, response);
 			} catch (SQLException e) {
@@ -90,22 +95,19 @@ public class roleAdmin extends HttpServlet {
 					System.out.println("SQLException in closing PreparedStatement or ResultSet");
 				}
 			}
-
 		}
-
+		// παρόμοιο με το παραπάνω
 		if (request.getParameter("remove") != null) {
+			// Σε περίπτωση που διαγράφουμε έναν ρόλο παίρνουμε το όνομα του .
 			String toRemove;
 			toRemove = request.getParameter("allRoles");
 			if (toRemove.equals("Administrator")) {
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"You are not allowed to remove this role -> Administrator\");</script>");
 				rd.include(request, response);
-
 			} else {
-
 				Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 				PreparedStatement ps = null;
-				ResultSet rs = null;
 				try {
 					ps = con.prepareStatement("DELETE FROM role WHERE rolename=?;");
 					ps.setString(1, toRemove);
@@ -128,6 +130,5 @@ public class roleAdmin extends HttpServlet {
 				}
 			}
 		}
-
 	}
 }

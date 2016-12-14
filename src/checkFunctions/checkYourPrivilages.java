@@ -21,77 +21,68 @@ import bean.client;
 import bean.roles;
 import bean.user;
 
-@WebServlet("/checkYourPrivilages")
+@WebServlet("/checkYourprivileges")
 public class checkYourPrivilages extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Αντικείμενα και cookies που θα χρησιμοποιήσει το servlet
 		HttpSession session = request.getSession();
 		user User = (user) session.getAttribute("User");
 		int isAdmin = User.getIsAdmin();
 		RequestDispatcher rd;
 		PrintWriter out = response.getWriter();
 
+		// Παίρνουμε την τιμή του κουμπιού που πατήθηκε και δρούμε ανάλογα
+		// Σε όλα γίνετε έλεγχος αμα υπάρχουν δικαιώματα και μετά ανάλογα
+		// redirect
+		// Βοηθητικές μέθοδοι πιο κάτω
 		if (request.getParameter("DiaxeirisiXristwn") != null) {
 			if (isAdmin == 1) {
 				String sqlInject = "Administrator";
-
 				getRoleCookies(request, response, sqlInject);
 				rd = getServletContext().getRequestDispatcher("/WEB-INF/main_admin/main_admin.jsp");
 				rd.forward(request, response);
 			} else {
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
-				out.println("<script>alert(\"Check your privilages\");</script>");
+				out.println("<script>alert(\"Check your privileges\");</script>");
 				rd.include(request, response);
-
 			}
 		}
-
 		if (request.getParameter("DiaxeirisiRolwn") != null) {
 			if (isAdmin == 1) {
 				String sqlInject = "Client";
 				String sqlInject2 = "Administrator";
-
 				getRoleCookies(request, response, sqlInject, sqlInject2);
 				RequestDispatcher dispatcher = getServletContext()
 						.getRequestDispatcher("/WEB-INF/main_admin/admin_roles.jsp");
-
 				dispatcher.forward(request, response);
-
 			} else {
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
-				out.println("<script>alert(\"Check your privilages\");</script>");
+				out.println("<script>alert(\"Check your privileges\");</script>");
 				rd.include(request, response);
-
 			}
 		}
-
 		if (request.getParameter("Elegxos") != null) {
 			if (User.getElegxos() == 1) {
-
 				rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/main_employee.jsp");
 				rd.forward(request, response);
 			} else {
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
-				out.println("<script>alert(\"Check your privilages\");</script>");
+				out.println("<script>alert(\"Check your privileges\");</script>");
 				rd.include(request, response);
-
 			}
-
 		}
 		if (request.getParameter("Kataxwrisi") != null) {
 			if (User.getKataxwrisi() == 1) {
-
 				rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
 				rd.forward(request, response);
 			} else {
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
-				out.println("<script>alert(\"Check your privilages\");</script>");
+				out.println("<script>alert(\"Check your privileges\");</script>");
 				rd.include(request, response);
-
 			}
-
 		}
 		if (request.getParameter("Egkrisi") != null) {
 			if (User.getEgkrisi() == 1) {
@@ -100,11 +91,9 @@ public class checkYourPrivilages extends HttpServlet {
 				rd.forward(request, response);
 			} else {
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
-				out.println("<script>alert(\"Check your privilages\");</script>");
+				out.println("<script>alert(\"Check your privileges\");</script>");
 				rd.include(request, response);
-
 			}
-
 		}
 		if (request.getParameter("Listes") != null) {
 			if (User.getYpologismos() == 1) {
@@ -116,11 +105,9 @@ public class checkYourPrivilages extends HttpServlet {
 				rd.forward(request, response);
 			} else {
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
-				out.println("<script>alert(\"Check your privilages\");</script>");
+				out.println("<script>alert(\"Check your privileges\");</script>");
 				rd.include(request, response);
-
 			}
-
 		}
 		if (request.getParameter("Tropopoiisi") != null) {
 			if (User.getTropopoiisi() == 1) {
@@ -129,16 +116,27 @@ public class checkYourPrivilages extends HttpServlet {
 				rd.forward(request, response);
 			} else {
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
-				out.println("<script>alert(\"Check your privilages\");</script>");
+				out.println("<script>alert(\"Check your privileges\");</script>");
 				rd.include(request, response);
-
 			}
-
+		}
+		if (request.getParameter("DiaxeirisiYpiresiwn") != null) {
+			if (isAdmin == 1) {
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
+				out.println("<script>alert(\"Under Construction\");</script>");
+				rd.forward(request, response);
+			} else {
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
+				out.println("<script>alert(\"Check your privileges\");</script>");
+				rd.include(request, response);
+			}
 		}
 	}
 
 	private void getRoleCookies(HttpServletRequest request, HttpServletResponse response, String sqlInject)
 			throws ServletException, IOException {
+		// Ετοιμάζουμε την σύνδεση και τα αντικείμενα που θα
+		// χρησιμοποιήσουμε
 		HttpSession session = request.getSession();
 		session.removeAttribute("Roles");
 		roles Roles = new roles();
@@ -146,10 +144,12 @@ public class checkYourPrivilages extends HttpServlet {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
+			// Φτιάχνουμε το sql Statement
 			ps = con.prepareStatement("SELECT rolename FROM role WHERE rolename <> ?; ");
 			ps.setString(1, sqlInject);
 			rs = ps.executeQuery();
 			while (rs.next()) {
+				//Φτιάχνουμε τα cookies για τα roles
 				Roles.appendRole(
 						"<option value=\"" + rs.getString("rolename") + "\">" + rs.getString("rolename") + "</option>");
 			}
@@ -169,7 +169,7 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 	}
 
-	// me 2 sqlinjections
+	// Παρορόμοιο αλλά με 2 Strings
 	private void getRoleCookies(HttpServletRequest request, HttpServletResponse response, String sqlInject,
 			String sqlInject2) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -203,6 +203,8 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 	}
 
+	//Παρόμοιο με τα άλλα δύο 
+	//Δημιουργεί arrayList με applications και το περνάει σαν cookie
 	private void getApplicationCookies(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -212,12 +214,14 @@ public class checkYourPrivilages extends HttpServlet {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = con.prepareStatement("SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 0 AND accepted=0;");
+			ps = con.prepareStatement(
+					"SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 0 AND accepted=0;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
 						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
-						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),rs.getString("tekmiriwsiDieuthinti"));
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),
+						rs.getString("tekmiriwsiDieuthinti"));
 				appList.add(Application);
 			}
 			session.setAttribute("appList", appList);
@@ -235,6 +239,8 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 	}
 
+	//Παρόμοιο με τα άλλα τρία 
+	//Δημιουργεί arrayList με approved applications και το περνάει σαν cookie
 	private void getApplicationApprovedCookies(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -244,12 +250,14 @@ public class checkYourPrivilages extends HttpServlet {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = con.prepareStatement("SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=1;");
+			ps = con.prepareStatement(
+					"SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=1;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
 						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
-						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),rs.getString("tekmiriwsiDieuthinti"));
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),
+						rs.getString("tekmiriwsiDieuthinti"));
 				appList.add(Application);
 			}
 			session.setAttribute("appListApproved", appList);
@@ -267,6 +275,8 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 	}
 
+	//Παρόμοιο με τα άλλα τέσσερα 
+	//Δημιουργεί arrayList με disproved applications και το περνάει σαν cookie
 	private void getApplicationDisprovedCookies(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -276,12 +286,14 @@ public class checkYourPrivilages extends HttpServlet {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = con.prepareStatement("SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=0;");
+			ps = con.prepareStatement(
+					"SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=0;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
 						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
-						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),rs.getString("tekmiriwsiDieuthinti"));
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),
+						rs.getString("tekmiriwsiDieuthinti"));
 				appList.add(Application);
 			}
 			session.setAttribute("appListDisproved", appList);
@@ -299,6 +311,8 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 	}
 
+	//Παρόμοιο με τα άλλα πέντε
+	//Δημιουργεί arrayList με clients και το περνάει σαν cookie
 	private void getAllClientCookies(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -308,7 +322,8 @@ public class checkYourPrivilages extends HttpServlet {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = con.prepareStatement("SELECT User.username,full_name,id,atm,adt,salary,phone FROM User,Client WHERE User.username = Client.username ;");
+			ps = con.prepareStatement(
+					"SELECT User.username,full_name,id,atm,adt,salary,phone FROM User,Client WHERE User.username = Client.username ;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				while (rs.next()) {
