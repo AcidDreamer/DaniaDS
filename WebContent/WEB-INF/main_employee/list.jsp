@@ -31,7 +31,7 @@
 			onclick="openTab(event, 'Approved_Applications')">Approved
 				Applications</a></li>
 		<li><a href="javascript:void(0)" class="tablinks"
-			onclick="openTab(event, 'Disproved_Applications')">Disproved
+			onclick="openTab(event, 'Disproved_Applications')">Unapproved
 				Applications</a></li>
 	</ul>
 
@@ -55,7 +55,7 @@
 						out.println("ADT : " + Client.getAdt() + "<br>");
 						out.println("</div>");
 					}
-				}else{
+				} else {
 					out.println("<b>No applications are currently available.</b>");
 				}
 			}
@@ -117,7 +117,7 @@
 
 	</div>
 	<div id="Disproved_Applications" class="tabcontent">
-		<h3>Disproved Applications</h3>
+		<h3>Unapproved Applications</h3>
 		<%
 			if (session.getAttribute("appListDisproved") == null) {
 			} else {

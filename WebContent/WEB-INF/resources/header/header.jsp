@@ -14,7 +14,7 @@
 	user User = (user) session.getAttribute("User");
 %>
 <div class="home">
-	<a href="main.jsp">Home button</a>
+	<a href="main.jsp">Home</a>
 
 	<div class="loggedIn">
 		<b>Hey, <%=User.getFullname()%>.Your status is : <%=User.getRole()%></b>
