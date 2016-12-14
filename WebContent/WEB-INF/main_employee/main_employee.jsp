@@ -25,7 +25,7 @@ if (session.getAttribute("Client") != null) {
 <p><%=Client.giveLoan()%></p>
 <%         
 }else{
-	out.print("No customer with such ID,AFM,ADT");
+	out.print("No customer with such ID,AFM,ADT or no search was made.");
 }
 %>
 </div>
