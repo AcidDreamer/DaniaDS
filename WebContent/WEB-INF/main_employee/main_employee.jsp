@@ -30,28 +30,4 @@ if (session.getAttribute("Client") != null) {
 %>
 </div>
 </body>
-<footer>
-<style>
-.CustomersInfo{
-    text-align: center;
-    font-size:18px;
-    width: 100%;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    border-top: 5px solid #7c8c7d;
-    margin: 50px 0px 0px 0px;
-    color:black;
-
-}
-.CustomersInfo p{
-	padding-top:1%;
-	padding-bottom:1%;
-	font-size:18px;
-	border-radius: 5px;
-    border:5px solid #7c8c7d;
-	
-}
-</style>
-</footer>
 </html>

@@ -9,8 +9,11 @@
 <%@page import="bean.client"%>
 
 <link href="css/main_admin.css" rel="stylesheet" type="text/css" />
+<link href="css/list.css" rel="stylesheet" type="text/css" />
 
 <%
+	//Δημιουργεία αντικειμένων και φόρτωμα των cookies
+
 	client Client;
 	application Application;
 	ArrayList<application> appList = (ArrayList<application>) session.getAttribute("appList");
@@ -147,117 +150,22 @@
 </body>
 
 <script type="text/javascript">
+	//Αλλαγή tab
 	function openTab(evt, tabName) {
-		//Declare vars
 		var i, tabcontent, tablinks;
-
-		// Hide all tabcontent 
 		tabcontent = document.getElementsByClassName("tabcontent");
 		for (i = 0; i < tabcontent.length; i++) {
 			tabcontent[i].style.display = "none";
 		}
 
-		// Get tablinks and remove the class active
 		tablinks = document.getElementsByClassName("tablinks");
 		for (i = 0; i < tablinks.length; i++) {
 			tablinks[i].className = tablinks[i].className
 					.replace(" active", "");
 		}
 
-		// Show the current tab
 		document.getElementById(tabName).style.display = "block";
 		evt.currentTarget.className += " active";
 	}
 </script>
-<style>
-.CustomersInfo {
-	text-align: center;
-	font-size: 18px;
-	width: 90%;
-	padding: 20px;
-	background: #fff;
-	border-radius: 5px;
-	border: 5px solid #7c8c7d;
-	color: black;
-	float: left;
-	margin-left: 2%;
-}
-
-.CustomersInfo .approveClass {
-	text-align: left;
-	font-size: 14px;
-	border: 2px solid #7c8c7d;
-	margin: 1% 0% 1% 0%;
-}
-
-.CustomersInfo button {
-	width: 20%;
-	height: 30px;
-	background: #7c8c7d;
-	box-sizing: border-box;
-	border-radius: 5px;
-	border: 1px solid #7c8c7d;
-	color: #fff;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 14px;
-	font-family: Montserrat;
-	outline: none;
-	cursor: pointer;
-	margin-left: 10%;
-	margin-bottom: 1%;
-}
-
-ul.tab {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	border: 1px solid #ccc;
-	background-color: #f1f1f1;
-}
-
-ul.tab li {
-	float: left;
-}
-
-ul.tab li a {
-	display: inline-block;
-	color: black;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	transition: 0.3s;
-	font-size: 17px;
-}
-
-h3 {
-	text-align: center;
-	color: black;
-}
-
-ul.tab li a:hover {
-	background-color: #ddd;
-}
-
-ul.tab li a:focus, .active {
-	background-color: #ccc;
-}
-
-.tabcontent {
-	display: none;
-	padding: 6px 12px;
-	border: 1px solid #ccc;
-	border-top: none;
-	text-align: center;
-	color: black;
-	background-color: #b5b2a0;
-}
-
-.makeMePretty {
-	border: 5px solid #fff;
-	margin: 1% 0px 1% 0px;
-	padding: 1% 0px 1% 0px;
-}
-</style>
 </html>

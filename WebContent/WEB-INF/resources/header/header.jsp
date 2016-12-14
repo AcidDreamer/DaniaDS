@@ -7,6 +7,7 @@
 <html>
 <header>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="css/header.css" rel="stylesheet" type="text/css" />
 
 <title>Welcome to Someone's Bank</title>
 
@@ -25,81 +26,6 @@
 		<button>Logout</button>
 	</form>
 </div>
-<style>
-header {
-	color: white;
-	background-color: #655fe8;
-	overflow: hidden;
-	padding: 1%;
-}
-
-header .home {
-	width: 20%;
-}
-
-header div {
-	display: inline;
-}
-
-header .loggedIn {
-	display: inline;
-	clear: left;
-	width: 50%;
-	text-align: center;
-}
-
-header .logout {
-	float: right;
-	width: 20%;
-}
-
-header button {
-	width: 100px;
-	background: #b5b2a0;
-	box-sizing: border-box;
-	border-radius: 5px;
-	border: 1px solid #7c8c7d;
-	color:black;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 12px;
-	font-family: Montserrat;
-	outline: none;
-	cursor: pointer;
-	height: 44px;
-}
-
-header button:hover {
-	background: #2c6bd6;
-}
-
-header input {
-	text-align: center;
-	box-sizing: border-box;
-	border-radius: 5px;
-	border: 1px solid #b5b2a0;
-	margin-bottom: 2px;
-	font-size: 14px;
-	font-family: Montserrat;
-	outline: none;
-	color:black;
-}
-
-header a:link, a:visited {
-	background-color: #b5b2a0;
-	padding: 14px 25px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	border-radius: 5px;
-	color:black;
-	
-}
-
-a:hover, a:active {
-	background-color: #2c6bd6;
-}
-</style>
 </header>
 </body>
 </html>

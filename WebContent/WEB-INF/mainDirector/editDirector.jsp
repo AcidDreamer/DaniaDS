@@ -8,6 +8,8 @@
 <%@page import="bean.application"%>
 
 <link href="css/main_admin.css" rel="stylesheet" type="text/css" />
+<link href="css/editDirector.css" rel="stylesheet" type="text/css" />
+
 <%
 	application Application;
 	ArrayList<application> appList = (ArrayList<application>) session.getAttribute("appList");
@@ -18,6 +20,7 @@
 	<div class="CustomersInfo" style="display: inline;">
 
 		<%
+		//Φορτώνουμε όλες τις εκκρεμούσες αιτήσεις με 2 radio buttons
 			if (session.getAttribute("appList") == null) {
 			} else {
 				if (!appList.isEmpty()) {
@@ -49,57 +52,5 @@
 			}
 		%>
 	</div>
-<style>
-.CustomersInfo {
-	text-align: center;
-	font-size: 18px;
-	width: 90%;
-	padding: 20px;
-	background: #fff;
-	border-radius: 5px;
-	border: 5px solid #7c8c7d;
-	color: black;
-	float: left;
-	margin-left: 2%;
-}
-
-.CustomersInfo .approveClass {
-	text-align: left;
-	font-size: 14px;
-	border: 2px solid #7c8c7d;
-	margin: 1% 0% 1% 0%;
-}
-
-.CustomersInfo button {
-	width: 20%;
-	height: 30px;
-	background: #7c8c7d;
-	box-sizing: border-box;
-	border-radius: 5px;
-	border: 1px solid #7c8c7d;
-	color: #fff;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 14px;
-	font-family: Montserrat;
-	outline: none;
-	cursor: pointer;
-	margin-bottom: 1%;
-}
-
-input{
-	height:20px;
-    text-align: center;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    font-size: 14px;
-    font-family: Montserrat;
-    padding: 0 10px 0 10px;
-    outline: none;  
-}
-</style>
-
 </body>
 </html>
