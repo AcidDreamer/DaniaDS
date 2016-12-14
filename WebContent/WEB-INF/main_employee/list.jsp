@@ -140,7 +140,7 @@
 
 					}
 				} else {
-					out.println("<b>No applications disproved applications.</b>");
+					out.println("<b>No  disproved applications.</b>");
 				}
 			}
 		%>
