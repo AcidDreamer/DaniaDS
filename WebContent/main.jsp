@@ -33,14 +33,14 @@ if (cookies != null) {
 
 <div class = "Services" style = "display:inline;" >
 	<form action="checkYourPrivilages" method="post">
-	<button name="Elegxos">Elegxos</button>
-	<button name="Kataxwrisi">Kataxwrisi</button>
-	<button name="Listes">Listes</button>
-	<button name="Tropopoiisi">Tropopoiisi</button>
-	<button name="Egkrisi">Egkrisi Aitisis</button>
-	<button name="DiaxeirisiXristwn">Diaxeirisi Xristwn</button>
-	<button name="DiaxeirisiRolwn">Diaxeirisi Rolwn</button>
-	<button name="DiaxeirisiYpiresiwn">Diaxeirisi Ypiresiwn</button>
+	<button name="Elegxos">Check</button>
+	<button name="Kataxwrisi">Registration</button>
+	<button name="Listes">Lists</button>
+	<button name="Tropopoiisi">Modification</button>
+	<button name="Egkrisi">Application Approval</button>
+	<button name="DiaxeirisiXristwn">User Admin</button>
+	<button name="DiaxeirisiRolwn">Role Admin</button>
+	<button name="DiaxeirisiYpiresiwn">Services Admin</button>
 	</form>
 </div>
 
