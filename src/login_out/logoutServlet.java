@@ -12,9 +12,13 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/logoutServlet")
 public class logoutServlet extends HttpServlet {
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		//καταστρέφουμε τα cookies
 		response.setContentType("text/html");
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
@@ -24,7 +28,7 @@ public class logoutServlet extends HttpServlet {
 				}
 			}
 		}
-		// invalidate the session if exists
+		// invalidate to session εάν υπάρχει
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			session.invalidate();

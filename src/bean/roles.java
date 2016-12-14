@@ -1,6 +1,7 @@
 package bean;
 
 public class roles {
+	//δημιουργούμαι ένα select με όλα τα roles
 	private String rolesSelect="<select name=\"allRoles\" class=\"allRoles\">";
 
 

@@ -6,7 +6,7 @@ public class client {
 	int afm;
 	int adt;
 	int salary;
-	int  phone;
+	int phone;
 	String loanInfo = "";
 	int id;
 
@@ -20,10 +20,50 @@ public class client {
 		this.phone = phone;
 		this.id = id;
 	}
-	public client(String username,int salary){
+
+	// Καινούργιο toString για τον πελάτη
+	@Override
+	public String toString() {
+		String string = "Client Full Name: " + this.fullname + " ID: " + this.id + "<br> Username : " + this.username
+				+ " AFM : " + this.afm + "<br> ADT : " + this.adt + " Salary : " + this.salary + " Phone : "
+				+ this.phone;
+		return string;
+	}
+
+	// Έλεγχος για μέγιστο ποσό δανείου που μπορεί να πάρει
+	public String giveLoan() {
+		if (this.salary < 400) {
+			loanInfo += "The customer cannot take a loan";
+		} else {
+			if (this.salary < 800 && salary >= 400) {
+				loanInfo += "Customer can take a loan of 2000 euros or less and repay it in 1-3 years.Max CC is 1400cc";
+				System.out.println("passed");
+			}
+			if (this.salary < 1200 && salary >= 800) {
+				loanInfo += "Customer can take a loan of 2000 euros or less  and repay it in 1-3 years.Max CC is 1400cc<br><br>"
+						+ "Customer can take a loan of 4000 euros or less  and repay it in 1-4 years.Max CC is 1600cc";
+			}
+			if (this.salary < 1800 && salary >= 1200) {
+				loanInfo += "Customer can take a loan of 2000 euros or less  and repay it in 1-3 years.Max CC is 1400cc<br><br>"
+						+ "Customer can take a loan of 4000 euros or less  and repay it in 1-4 years.Max CC is 1600cc<br><br>"
+						+ "Customer can take a loan of 8000 euros or less  and repay it in 1-5 years.Max CC is 2000cc";
+			}
+			if (this.salary >= 1800) {
+				loanInfo += "Customer can take a loan of 2000 euros or less  and repay it in 1-3 years.Max CC is 1400cc<br><br>"
+						+ "Customer can take a loan of 4000 euros or less  and repay it in 1-4 years.Max CC is 1600cc<br><br>"
+						+ "Customer can take a loan of 8000 euros or less  and repay it in 1-5 years.Max CC is 2000cc<br><br>"
+						+ "Customer can take a loan of 15000 euros or less  and repay it in 1-10 years.Max CC is 2500cc";
+			}
+		}
+		return loanInfo;
+	}
+
+	// Getters & Setters
+	public client(String username, int salary) {
 		this.username = username;
 		this.salary = salary;
 	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -78,43 +118,6 @@ public class client {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-
-
-	@Override
-	public String toString() {
-		String string = "Client Full Name: " + this.fullname + " ID: " + this.id + "<br> Username : " + this.username
-				+ " AFM : " + this.afm + "<br> ADT : " + this.adt + " Salary : " + this.salary + " Phone : "
-				+ this.phone;
-		return string;
-	}
-
-	public String giveLoan() {
-		if (this.salary < 400) {
-			loanInfo += "The customer cannot take a loan";
-		} else {
-			if (this.salary < 800 && salary >= 400) {
-				loanInfo += "Customer can take a loan of 2000 euros or less and repay it in 1-3 years.Max CC is 1400cc";
-				System.out.println("passed");
-			}
-			if (this.salary < 1200 && salary >= 800) {
-				loanInfo += "Customer can take a loan of 2000 euros or less  and repay it in 1-3 years.Max CC is 1400cc<br><br>" +
-							"Customer can take a loan of 4000 euros or less  and repay it in 1-4 years.Max CC is 1600cc";
-			}
-			if (this.salary < 1800 && salary >= 1200) {
-				loanInfo += "Customer can take a loan of 2000 euros or less  and repay it in 1-3 years.Max CC is 1400cc<br><br>" +
-						"Customer can take a loan of 4000 euros or less  and repay it in 1-4 years.Max CC is 1600cc<br><br>" +
-						"Customer can take a loan of 8000 euros or less  and repay it in 1-5 years.Max CC is 2000cc";
-			}
-			if (this.salary >= 1800) {
-				loanInfo += "Customer can take a loan of 2000 euros or less  and repay it in 1-3 years.Max CC is 1400cc<br><br>" +
-						"Customer can take a loan of 4000 euros or less  and repay it in 1-4 years.Max CC is 1600cc<br><br>" +
-						"Customer can take a loan of 8000 euros or less  and repay it in 1-5 years.Max CC is 2000cc<br><br>"+
-						"Customer can take a loan of 15000 euros or less  and repay it in 1-10 years.Max CC is 2500cc";
-			}
-		}
-		return loanInfo;
 	}
 
 }

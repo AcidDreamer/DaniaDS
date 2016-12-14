@@ -35,8 +35,7 @@ public class adminUsers extends HttpServlet {
 		} else {
 			if (request.getParameter("ClientAddBtn") != null) {
 				// Σε περίπτωση που πατηθεί το submit στην φόρμα addClient
-				// παίρνουμε
-				// τις μεταβλητές
+				// παίρνουμε τις μεταβλητές
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 				String full_name = request.getParameter("full_name");

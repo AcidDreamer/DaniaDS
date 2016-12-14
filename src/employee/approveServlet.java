@@ -26,6 +26,8 @@ public class approveServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Ετοιμάζουμε την σύνδεση και τα αντικείμενα που θα
+		// χρησιμοποιήσουμε
 		RequestDispatcher rd;
 		PrintWriter out = response.getWriter();
 		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
@@ -34,25 +36,32 @@ public class approveServlet extends HttpServlet {
 		application Application = null;
 		client Client = null;
 		if (request.getParameter("approval") == null) {
+			// Έλενχει φόρμας και redirect με κατάλληλο μήνυμα σε περίπτωση
+			// σφάλματος
 			out.println("<script>alert(\"Pick approve or disapprove before hitting submit\")</script>");
 			rd = getServletContext().getRequestDispatcher("/main.jsp");
 			rd.include(request, response);
 		} else {
+			// παίρνουμε τις μεταβλητές
 			int app_code = Integer.parseInt(request.getParameter("app_code"));
 			String username = request.getParameter("username");
 			String approved = request.getParameter("approval");
 			try {
+				// Φτιάχνουμε το sql Statement
 				ps = con.prepareStatement(
 						"SELECT * FROM Application a JOIN User u ON u.username = a.username JOIN Client c ON c.username=u.username WHERE app_code=?  AND u.username = ? AND status = 0;");
 				ps.setInt(1, app_code);
 				ps.setString(2, username);
+				// Εκτελούμε το statement
 				rs = ps.executeQuery();
+				//Ενημέρωση σε βαρύ σφάλμα
 				if (rs == null) {
 					out.println(
 							"<script>alert(\"" + "Something went seriously wrong ,contact support !" + "\")</script>");
 					rd = getServletContext().getRequestDispatcher("/main.jsp");
 					rd.include(request, response);
 				}
+				//Δημιουργεία πελάτη
 				while (rs.next() && rs != null) {
 					Client = new client(rs.getString("username"), rs.getString("full_name"), rs.getInt("atm"),
 							rs.getInt("adt"), rs.getInt("salary"), rs.getInt("phone"), rs.getInt("id"));
@@ -60,6 +69,7 @@ public class approveServlet extends HttpServlet {
 							rs.getString("drivers_license"), rs.getInt("taxes"), rs.getString("username"),
 							rs.getInt("repayTime"), rs.getString("tekmiriwsi"),"");
 				}
+				//Αποφασίζουμε άμα μπορεί να αρνηθεί στο αίτημα ο διευθυντής
 				if (Application != null && Client != null) {
 					if (Application.canBeDisproved(Client) && approved.equals("disapprove")) {
 						ps = con.prepareStatement("UPDATE Application SET status = 1 WHERE app_code = ?;");

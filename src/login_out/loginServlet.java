@@ -23,9 +23,12 @@ public class loginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// παίρνουμε τις μεταβλητές
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String errorMsg = null;
+		// Έλενχει φόρμας και redirect με κατάλληλο μήνυμα σε περίπτωση
+		// σφάλματος
 		if (username == null || username.equals("")) {
 			errorMsg = "Usename can't be null or empty";
 		}
@@ -42,19 +45,23 @@ public class loginServlet extends HttpServlet {
 			PreparedStatement ps = null;
 			ResultSet rs = null;
 			try {
+				// Ετοιμάζουμε την σύνδεση
 				ps = con.prepareStatement(
 						"SELECT DISTINCT u.username,u.role,full_name,Elegxos,Kataxwrisi,Ypologismos,Tropopoiisi,Egkrisi,isAdmin,isClient FROM User u JOIN role r ON u.role = r.rolename  WHERE username=? and password=? and isClient=0 limit 1;");
 				ps.setString(1, username);
 				ps.setString(2, password);
 				rs = ps.executeQuery();
+				//Έαν βρεθεί ο χρήστης
 				if (rs != null && rs.next()) {
 					user user = new user(rs.getString("username"), rs.getString("full_name"), rs.getString("role"),
 							rs.getInt("Elegxos"), rs.getInt("Kataxwrisi"), rs.getInt("Ypologismos"),
 							rs.getInt("Tropopoiisi"), rs.getInt("Egkrisi"), rs.getInt("isAdmin"),
 							rs.getInt("isClient"));
+					//Δημιουργούμε το cookie
 					HttpSession session = request.getSession();
 					session.setAttribute("User", user);
                     response.sendRedirect("main.jsp");
+                    //Διαφορετικά
 				} else {
 					RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
 					PrintWriter out = response.getWriter();

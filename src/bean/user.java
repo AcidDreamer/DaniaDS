@@ -30,6 +30,12 @@ public class user implements Serializable {
 		this.isAdmin = isAdmin;
 		this.isClient = isClient;
 	}
+	
+	//Καινούργιο toString για τον χρήστη
+	@Override
+	public String toString() {
+		return "Name=" + this.username + " Role=" + this.role + " Full Name=" + this.fullname;
+	}
 
 	public void setUsername(String username) {
 		this.username = username;
@@ -111,8 +117,4 @@ public class user implements Serializable {
 		this.isClient = isClient;
 	}
 
-	@Override
-	public String toString() {
-		return "Name=" + this.username + " Role=" + this.role + " Full Name=" + this.fullname;
-	}
 }

@@ -21,7 +21,7 @@ import bean.client;
 import bean.roles;
 import bean.user;
 
-@WebServlet("/checkYourprivileges")
+@WebServlet("/checkYourPrivilages")
 public class checkYourPrivilages extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -58,6 +58,17 @@ public class checkYourPrivilages extends HttpServlet {
 				RequestDispatcher dispatcher = getServletContext()
 						.getRequestDispatcher("/WEB-INF/main_admin/admin_roles.jsp");
 				dispatcher.forward(request, response);
+			} else {
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
+				out.println("<script>alert(\"Check your privileges\");</script>");
+				rd.include(request, response);
+			}
+		}
+		if (request.getParameter("DiaxeirisiYpiresiwn") != null) {
+			if (isAdmin == 1) {
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
+				out.println("<script>alert(\"Under construction!\");</script>");
+				rd.include(request, response);
 			} else {
 				rd = getServletContext().getRequestDispatcher("/main.jsp");
 				out.println("<script>alert(\"Check your privileges\");</script>");
@@ -120,17 +131,6 @@ public class checkYourPrivilages extends HttpServlet {
 				rd.include(request, response);
 			}
 		}
-		if (request.getParameter("DiaxeirisiYpiresiwn") != null) {
-			if (isAdmin == 1) {
-				rd = getServletContext().getRequestDispatcher("/main.jsp");
-				out.println("<script>alert(\"Under Construction\");</script>");
-				rd.forward(request, response);
-			} else {
-				rd = getServletContext().getRequestDispatcher("/main.jsp");
-				out.println("<script>alert(\"Check your privileges\");</script>");
-				rd.include(request, response);
-			}
-		}
 	}
 
 	private void getRoleCookies(HttpServletRequest request, HttpServletResponse response, String sqlInject)
@@ -149,7 +149,7 @@ public class checkYourPrivilages extends HttpServlet {
 			ps.setString(1, sqlInject);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				//Φτιάχνουμε τα cookies για τα roles
+				// Φτιάχνουμε τα cookies για τα roles
 				Roles.appendRole(
 						"<option value=\"" + rs.getString("rolename") + "\">" + rs.getString("rolename") + "</option>");
 			}
@@ -203,8 +203,8 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 	}
 
-	//Παρόμοιο με τα άλλα δύο 
-	//Δημιουργεί arrayList με applications και το περνάει σαν cookie
+	// Παρόμοιο με τα άλλα δύο
+	// Δημιουργεί arrayList με applications και το περνάει σαν cookie
 	private void getApplicationCookies(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -239,8 +239,8 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 	}
 
-	//Παρόμοιο με τα άλλα τρία 
-	//Δημιουργεί arrayList με approved applications και το περνάει σαν cookie
+	// Παρόμοιο με τα άλλα τρία
+	// Δημιουργεί arrayList με approved applications και το περνάει σαν cookie
 	private void getApplicationApprovedCookies(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -275,8 +275,8 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 	}
 
-	//Παρόμοιο με τα άλλα τέσσερα 
-	//Δημιουργεί arrayList με disproved applications και το περνάει σαν cookie
+	// Παρόμοιο με τα άλλα τέσσερα
+	// Δημιουργεί arrayList με disproved applications και το περνάει σαν cookie
 	private void getApplicationDisprovedCookies(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -311,8 +311,8 @@ public class checkYourPrivilages extends HttpServlet {
 		}
 	}
 
-	//Παρόμοιο με τα άλλα πέντε
-	//Δημιουργεί arrayList με clients και το περνάει σαν cookie
+	// Παρόμοιο με τα άλλα πέντε
+	// Δημιουργεί arrayList με clients και το περνάει σαν cookie
 	private void getAllClientCookies(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();

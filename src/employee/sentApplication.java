@@ -25,16 +25,22 @@ public class sentApplication extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getParameter("app_code") == null || request.getParameter("taxes") == null || request.getParameter("repayTime") == null
-				|| request.getParameter("drivers_licence").equals("") || request.getParameter("username").equals("")
-				|| request.getParameter("taxes") == null || request.getParameter("app_code") == null || request.getParameter("taxes").equals("") || request.getParameter("repayTime").equals("")
-				|| request.getParameter("taxes").equals("") || request.getParameter("commentary").equals("")) {
+		// Έλενχει φόρμας και redirect με κατάλληλο μήνυμα σε περίπτωση
+		// σφάλματος
+		if (request.getParameter("app_code") == null || request.getParameter("taxes") == null
+				|| request.getParameter("repayTime") == null || request.getParameter("drivers_licence").equals("")
+				|| request.getParameter("username").equals("") || request.getParameter("taxes") == null
+				|| request.getParameter("app_code") == null || request.getParameter("taxes").equals("")
+				|| request.getParameter("repayTime").equals("") || request.getParameter("taxes").equals("")
+				|| request.getParameter("commentary").equals("")) {
+			// Ετοιμάζουμε τα αντικείμενα
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert(\"" + "Form elements cannot be empty ." + "\")</script>");
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
+			RequestDispatcher rd = getServletContext()
+					.getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
 			rd.include(request, response);
-
 		} else {
+			// παίρνουμε τις μεταβλητές και ετοιμάζουμε τα αντικείμενα
 			int id = Integer.parseInt(request.getParameter("app_code"));
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			int buy_type = Integer.parseInt(request.getParameter("buy_type"));
@@ -55,21 +61,27 @@ public class sentApplication extends HttpServlet {
 			Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 			PreparedStatement ps = null;
 			ResultSet rs = null;
-
+			RequestDispatcher rd;
+			PrintWriter out = response.getWriter();
 			try {
-				PrintWriter out = response.getWriter();
+				//Βρίσκουμε τον πελάτη
 				ps = con.prepareStatement(
 						"SELECT * FROM User u JOIN Client c  ON  u.username=c.username WHERE c.username=? and role=\"Client\"");
 				ps.setString(1, username);
 				rs = ps.executeQuery();
+				//Εάν υπάρχει ο πελάτης
 				if (rs != null && rs.next()) {
 					Client = new client(rs.getString("username"), rs.getInt("salary"));
-					Application = new application(id, amount, buyType, drivers_license, taxes, username, repayTime,tekmiriwsi,"");
+					Application = new application(id, amount, buyType, drivers_license, taxes, username, repayTime,
+							tekmiriwsi, "");
+					//Άμα δεν μπορεί να πάρει δάνιο
 					if (!(Application.canGetLoad(Client))) {
 						out.println("<script>alert(\"" + "User cannot get a loan ." + "\")</script>");
-						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						rd.include(request, response);
+						//Άμα μπορεί να πάρει δάνιο
 					} else {
+						//Φτιάχνουμε το δάνειο
 						ps = con.prepareStatement("INSERT INTO Application VALUES(?,?,?,?,?,?,?,0,0,?);");
 						ps.setInt(1, Application.getApp_code());
 						ps.setInt(2, Application.getAmount());
@@ -84,17 +96,18 @@ public class sentApplication extends HttpServlet {
 						ps.setInt(1, Application.getApp_code());
 						ps.executeUpdate();
 						out.println("<script>alert(\"" + "Application Added Succesfully ." + "\")</script>");
-						RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
 						rd.include(request, response);
 					}
 				} else {
+					//Άμα δεν βρεθεί ο χρήστης
 					out.println("<script>alert(\"" + "User has not been found ." + "\")</script>");
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
+					rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/makeApplication.jsp");
 					rd.include(request, response);
 				}
 			} catch (SQLException e) {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.jsp");
-				PrintWriter out = response.getWriter();
+				rd = getServletContext().getRequestDispatcher("/main.jsp");
+				out = response.getWriter();
 				out.println("<script>alert(\"" + e + "\")</script>");
 				rd.include(request, response);
 				throw new ServletException("DB Connection problem.");

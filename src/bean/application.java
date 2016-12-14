@@ -32,6 +32,7 @@ public class application {
 		this.tekmiriwsiEdit =tekmiriwsiEdit;
 	}
 	
+	//Έλεγχος για το τι δάνειο δικαιούται ο πελάτης
 	public boolean canGetLoad(client Client) {
 		if(Client.getSalary() < 400){
 			return false;
@@ -58,7 +59,7 @@ public class application {
 		}
 		return false;
 	}
-	
+	//Άμα ο διευθυντής μπορεί να απορρίψει την αίτηση
 	public boolean canBeDisproved(client Client) {
 		int salary = Client.getSalary();
 		if(amount<=2000 && salary>=800){
@@ -73,7 +74,7 @@ public class application {
 		return true;
 	}
 
-
+	//Getters & Setters
 	public String getUsername() {
 		return username;
 	}

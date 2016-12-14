@@ -14,30 +14,30 @@ public class sentEmail extends HttpServlet{
                     HttpServletResponse response)
             throws ServletException, IOException
   {
-      // Recipient's email 
+      //  email προς
       String to = "abcd@gmail.com";
  
-      // Sender's email 
+      // email από
       String from = "web@gmail.com";
  
       // Από που στέλνουμε το e-mail
       String host = "localhost";
  
-      // Get system properties
+      // πάρε τα system.Properties();
       Properties properties = System.getProperties();
  
-      // Setup mail server
+      // Χτήσε το mail server
       properties.setProperty("mail.smtp.host", host);
  
-      // Get the default Session.
+      // Πάρε το default Session.
       Session session = Session.getDefaultInstance(properties);
       
-	  // Set response content type
+	  // Παίρνουμε response content type
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
 
       try{
-         // Create a default MimeMessage object.
+         //Φτιάξε ένα  MimeMessage .
          MimeMessage message = new MimeMessage(session);
          message.setFrom(new InternetAddress(from));
          message.addRecipient(Message.RecipientType.TO,

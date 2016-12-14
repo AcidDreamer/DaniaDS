@@ -11,10 +11,11 @@ import util.DBConnectionManager;
 public class AppContextListener implements ServletContextListener {
         public void contextInitialized(ServletContextEvent servletContextEvent) {
                 ServletContext ctx = servletContextEvent.getServletContext();
-                // initialize DB Connection
+                // Φορτώνουμε τις παραμέτρους τις σύνδεσεις
                 String dbURL = ctx.getInitParameter("dbURL");
                 String user = ctx.getInitParameter("dbUser");
                 String pwd = ctx.getInitParameter("dbPassword");
+                //Προσπαθούμε να αρχίσουμε την σύνδεση
                 try {
                         DBConnectionManager connectionManager = new DBConnectionManager(dbURL, user, pwd);
                         ctx.setAttribute("DBConnection", connectionManager.getConnection());
@@ -24,6 +25,7 @@ public class AppContextListener implements ServletContextListener {
                         e.printStackTrace();
                 }
         }
+        //Κλείνουμε την σύνδεση
         public void contextDestroyed(ServletContextEvent servletContextEvent) {
                 Connection con = (Connection) servletContextEvent.getServletContext().getAttribute("DBConnection");
                 try {

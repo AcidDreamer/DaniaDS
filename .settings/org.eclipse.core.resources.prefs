@@ -1,5 +1,17 @@
 eclipse.preferences.version=1
 encoding//src/adminFunctions/adminUsers.java=UTF-8
 encoding//src/adminFunctions/roleAdmin.java=UTF-8
+encoding//src/bean/application.java=UTF-8
+encoding//src/bean/client.java=UTF-8
+encoding//src/bean/roles.java=UTF-8
+encoding//src/bean/user.java=UTF-8
 encoding//src/checkFunctions/checkYourPrivilages.java=UTF-8
+encoding//src/employee/approveServlet.java=UTF-8
+encoding//src/employee/editApplication.java=UTF-8
+encoding//src/employee/searchCustomer.java=UTF-8
+encoding//src/employee/sentApplication.java=UTF-8
+encoding//src/listener/AppContextListener.java=UTF-8
+encoding//src/login_out/loginServlet.java=UTF-8
+encoding//src/login_out/logoutServlet.java=UTF-8
+encoding//src/util/DBConnectionManager.java=UTF-8
 encoding//src/util/sentMail.java=UTF-8

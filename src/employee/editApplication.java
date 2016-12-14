@@ -25,6 +25,8 @@ public class editApplication extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Ετοιμάζουμε την σύνδεση και τα αντικείμενα που θα
+		// χρησιμοποιήσουμε
 		RequestDispatcher rd;
 		PrintWriter out = response.getWriter();
 		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
@@ -33,15 +35,19 @@ public class editApplication extends HttpServlet {
 		application Application = null;
 		if (request.getParameter("newAmount").equals("") || request.getParameter("newCommentary").equals("")
 				|| (Integer.parseInt(request.getParameter("newAmount")) > 15000) || (Integer.parseInt(request.getParameter("newAmount")) < 0)) {
+			// Έλενχει φόρμας και redirect με κατάλληλο μήνυμα σε περίπτωση
+			// σφάλματος
 			out.println(
 					"<script>alert(\"Make sure to fill the fields and not surpass the 15000 euros threshold!\")</script>");
 			rd = getServletContext().getRequestDispatcher("/main.jsp");
 			rd.include(request, response);
 		} else {
+			// παίρνουμε τις μεταβλητές απο το request
 			int app_code = Integer.parseInt(request.getParameter("app_code"));
 			int newAmount = Integer.parseInt(request.getParameter("newAmount"));
 			String newCommentary = request.getParameter("newCommentary");
 			try {
+				// Φτιάχνουμε το sql Statement
 				ps = con.prepareStatement("UPDATE Application SET amount = ? WHERE app_code = ?;");
 				ps.setInt(1, newAmount);
 				ps.setInt(2, app_code);
@@ -49,6 +55,7 @@ public class editApplication extends HttpServlet {
 				ps = con.prepareStatement("UPDATE Director SET tekmiriwsiDieuthinti = ? WHERE app_code = ?  ;");
 				ps.setString(1, newCommentary);
 				ps.setInt(2, app_code);
+				// Εκτελούμε το statement
 				ps.executeUpdate();
 				out.println("<script>alert(\"" + "Application Modified!" + "\")</script>");
 				rd = getServletContext().getRequestDispatcher("/main.jsp");

@@ -42,7 +42,7 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet>
-    <servlet-name>checkYourPrivilages</servlet-name>
+    <servlet-name>checkYourprivileges</servlet-name>
     <servlet-class>checkFuntions/checkYourPrivilages.java</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
