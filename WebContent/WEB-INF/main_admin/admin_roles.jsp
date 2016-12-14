@@ -28,11 +28,11 @@
 		<div class="Add">
 			<form class="RoleForm" action="roleAdmin" method="post">
 				Role Name:<input type="text" value="" placeholder="Role Name"
-					name="rolename" /><br> Elegxos:<input type="checkbox"
-					name="Elegxos"> Kataxwrisi:<input type="checkbox"
-					name="Kataxwrisi"><br> Ypologismos:<input
-					type="checkbox" name="Ypologismos"> Tropopoiisi:<input
-					type="checkbox" name="Tropopoiisi"><br> Egkrisi:<input
+					name="rolename" /><br> Check:<input type="checkbox"
+					name="Elegxos"> Registration:<input type="checkbox"
+					name="Kataxwrisi"><br> Lists:<input
+					type="checkbox" name="Ypologismos"> Modification:<input
+					type="checkbox" name="Tropopoiisi"><br> Approval:<input
 					type="checkbox" name="Egkrisi"><br>
 				<button name="add">Submit</button>
 			</form>
@@ -40,12 +40,12 @@
 
 		<div class="Edit">
 			<form class="RoleForm" action="roleAdmin" method="post">
-				Role Name:<%=Roles.getRolesSelect()%><br> Elegxos:<input
-					type="checkbox" name="Elegxos"> Kataxwrisi:<input
-					type="checkbox" name="Kataxwrisi"><br> Ypologismos:<input
-					type="checkbox" name="Ypologismos"> Tropopoiisi:<input
-					type="checkbox" name="Tropopoiisi"><br> Egkrisi:<input
-					type="checkbox" name="Egkrisi"><br>
+				Role Name:<%=Roles.getRolesSelect()%><br>  Check:<input type="checkbox"
+					name="Elegxos"> Registration:<input type="checkbox"
+					name="Kataxwrisi"><br> Lists:<input
+					type="checkbox" name="Ypologismos"> Modification:<input
+					type="checkbox" name="Tropopoiisi"><br> Approval:<input
+					type="checkbox" name="Egkrisi"><br>>
 				<button name="add">Submit</button>
 			</form>
 		</div>
