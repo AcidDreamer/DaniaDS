@@ -36,7 +36,6 @@
     <servlet-class>employee/editApplication.java</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
   <servlet>
     <servlet-name>approveServlet</servlet-name>
     <servlet-class>employee/approveServlet.java</servlet-class>
