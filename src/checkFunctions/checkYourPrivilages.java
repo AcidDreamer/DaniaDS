@@ -326,11 +326,10 @@ public class checkYourPrivilages extends HttpServlet {
 					"SELECT User.username,full_name,id,atm,adt,salary,phone FROM User,Client WHERE User.username = Client.username ;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
-				while (rs.next()) {
-					client Client = new client(rs.getString("username"), rs.getString("full_name"), rs.getInt("atm"),
-							rs.getInt("adt"), rs.getInt("salary"), rs.getInt("phone"), rs.getInt("id"));
-					clientList.add(Client);
-				}
+				client Client = new client(rs.getString("username"), rs.getString("full_name"), rs.getInt("atm"),
+						rs.getInt("adt"), rs.getInt("salary"), rs.getInt("phone"), rs.getInt("id"));
+				clientList.add(Client);
+
 			}
 			session.setAttribute("clientList", clientList);
 		} catch (SQLException e) {

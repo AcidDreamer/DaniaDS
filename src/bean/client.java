@@ -26,7 +26,7 @@ public class client {
 	public String toString() {
 		String string = "Client Full Name: " + this.fullname + " ID: " + this.id + "<br> Username : " + this.username
 				+ " AFM : " + this.afm + "<br> ADT : " + this.adt + " Salary : " + this.salary + " Phone : "
-				+ this.phone;
+				+ this.phone + " ID :" + this.id;
 		return string;
 	}
 

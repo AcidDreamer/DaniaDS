@@ -66,6 +66,6 @@
   </context-param>
   <context-param>
     <param-name>dbURL</param-name>
-    <param-value>jdbc:mysql://62.217.125.30:3306/21458</param-value>
+    <param-value>jdbc:mysql://83.212.105.20:3306/21458</param-value>
   </context-param>
 </web-app>

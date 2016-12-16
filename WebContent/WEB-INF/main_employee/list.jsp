@@ -54,7 +54,7 @@
 						out.println("Username : " + Client.getUsername() + "<br>");
 						out.println("Phone : " + Client.getPhone() + "<br>");
 						out.println("Salary : " + Client.getSalary() + "<br>");
-						out.println("AFM : " + Client.getAdt() + "<br>");
+						out.println("AFM : " + Client.getAfm() + "<br>");
 						out.println("ADT : " + Client.getAdt() + "<br>");
 						out.println("</div>");
 					}
