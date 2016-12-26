@@ -168,7 +168,7 @@
 						out.println(" Amount : " + Application.getAmount() + "<br>");
 						out.println(" Repay Time  : " + Application.getRepayTime() + " years " + "<br>");
 						out.println("Commentary : ");
-						out.println("<form class=\"approveOnline\" method=\"post\">");
+						out.println("<form class=\"approveOnline\" method=\"post\" action=\"approveOnlineServlet\">");
 						out.println(" <input type=\"text\" name=\"moreCommentary\" placeholder=\"Commentary \"><br>");
 						out.println("<input type=\"hidden\" name=\"app_code\" value=\"" + Application.getApp_code()
 								+ "\" />");
