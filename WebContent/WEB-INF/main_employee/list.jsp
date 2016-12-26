@@ -20,6 +20,7 @@
 	ArrayList<client> clientList = (ArrayList<client>) session.getAttribute("clientList");
 	ArrayList<application> appListApproved = (ArrayList<application>) session.getAttribute("appListApproved");
 	ArrayList<application> appListDisproved = (ArrayList<application>) session.getAttribute("appListDisproved");
+	ArrayList<application> appListOnline = (ArrayList<application>) session.getAttribute("appListOnline");
 %>
 </head>
 <body>
@@ -36,6 +37,10 @@
 		<li><a href="javascript:void(0)" class="tablinks"
 			onclick="openTab(event, 'Disproved_Applications')">Unapproved
 				Applications</a></li>
+		<li><a href="javascript:void(0)" class="tablinks"
+			onclick="openTab(event, 'OnlineApplications')">Online
+				Applications</a></li>
+
 	</ul>
 
 
@@ -146,6 +151,43 @@
 		%>
 
 	</div>
+	<div id="OnlineApplications" class="tabcontent">
+		<h3>Online Applications</h3>
+		<%
+			if (session.getAttribute("appListOnline") == null) {
+			} else {
+				if (!appListOnline.isEmpty()) {
+					for (int i = 0; i < appListOnline.size(); i++) {
+						Application = appListOnline.get(i);
+						out.println(
+								"<div class=\"makeMePretty\">Application Code : " + Application.getApp_code() + "<br>");
+						out.println(" Client : " + Application.getUsername() + "<br>");
+						out.println(" Drivers License : " + Application.getDrivers_licence() + "<br>");
+						out.println(" Taxes : " + Application.getTaxes() + "<br>");
+						out.println(" Buy Type : " + Application.getBuy_Type() + "<br>");
+						out.println(" Amount : " + Application.getAmount() + "<br>");
+						out.println(" Repay Time  : " + Application.getRepayTime() + " years " + "<br>");
+						out.println("Commentary : ");
+						out.println("<form class=\"approveOnline\" method=\"post\">");
+						out.println(" <input type=\"text\" name=\"moreCommentary\" placeholder=\"Commentary \"><br>");
+						out.println("<input type=\"hidden\" name=\"app_code\" value=\"" + Application.getApp_code()
+								+ "\" />");
+						out.println("<input type=\"hidden\" name=\"username\" value=\"" + Application.getUsername()
+								+ "\" />");
+						out.println("  <input type=\"radio\" name=\"approval\" value=\"approve\"> Approve");
+						out.println("  <input type=\"radio\" name=\"approval\" value=\"disapprove\"> Disapprove<br>");
+						out.println("<button>Submit</button>");
+						out.println("</form>");
+
+					}
+				} else {
+					out.println("<b>No  online applications.</b>");
+				}
+			}
+		%>
+
+	</div>
+
 
 </body>
 

@@ -112,6 +112,7 @@ public class checkYourPrivilages extends HttpServlet {
 				getApplicationDisprovedCookies(request, response);
 				getAllClientCookies(request, response);
 				getApplicationCookies(request, response);
+				getApplicationOnliner(request,response);
 				rd = getServletContext().getRequestDispatcher("/WEB-INF/main_employee/list.jsp");
 				rd.forward(request, response);
 			} else {
@@ -215,7 +216,7 @@ public class checkYourPrivilages extends HttpServlet {
 		ResultSet rs = null;
 		try {
 			ps = con.prepareStatement(
-					"SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 0 AND accepted=0;");
+					"SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 0 AND accepted=0 AND isOnline=00;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
@@ -251,7 +252,7 @@ public class checkYourPrivilages extends HttpServlet {
 		ResultSet rs = null;
 		try {
 			ps = con.prepareStatement(
-					"SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=1;");
+					"SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=1 AND isOnline=00;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
@@ -287,7 +288,7 @@ public class checkYourPrivilages extends HttpServlet {
 		ResultSet rs = null;
 		try {
 			ps = con.prepareStatement(
-					"SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=0;");
+					"SELECT * FROM Application a LEFT OUTER JOIN Director d on d.app_code = a.app_code WHERE status = 1 AND accepted=0 AND isOnline=00;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
@@ -345,5 +346,38 @@ public class checkYourPrivilages extends HttpServlet {
 			}
 		}
 	}
-
+	// Δημιουργεί arrayList με όλα τα application που γίναν online και το περνάει σαν cookie
+	private void getApplicationOnliner(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("appListOnline");
+		ArrayList<application> appList = new ArrayList<application>();
+		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement(
+					"SELECT * FROM Application WHERE isOnline=10 ;");
+			rs = ps.executeQuery();
+			while (rs.next() && rs != null) {
+				application Application = new application(rs.getInt("app_code"), rs.getInt("amount"),
+						rs.getString("buy_type"), rs.getString("drivers_license"), rs.getInt("taxes"),
+						rs.getString("username"), rs.getInt("repayTime"), rs.getString("tekmiriwsi"),
+						"  ");
+				appList.add(Application);
+			}
+			session.setAttribute("appListOnline", appList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Database connection problem");
+			throw new ServletException("DB Connection problem.");
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				System.out.println("SQLException in closing PreparedStatement or ResultSet");
+			}
+		}
+	}
 }

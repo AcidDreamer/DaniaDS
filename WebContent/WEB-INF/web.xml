@@ -41,6 +41,11 @@
     <servlet-class>employee/approveServlet.java</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+    <servlet>
+    <servlet-name>ApproveOnlineServlet</servlet-name>
+    <servlet-class>employee/ApproveOnlineServlet.java</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
   <servlet>
     <servlet-name>checkYourprivileges</servlet-name>
     <servlet-class>checkFuntions/checkYourPrivilages.java</servlet-class>

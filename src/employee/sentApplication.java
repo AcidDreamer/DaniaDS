@@ -82,7 +82,7 @@ public class sentApplication extends HttpServlet {
 						//Άμα μπορεί να πάρει δάνιο
 					} else {
 						//Φτιάχνουμε το δάνειο
-						ps = con.prepareStatement("INSERT INTO Application VALUES(?,?,?,?,?,?,?,0,0,?);");
+						ps = con.prepareStatement("INSERT INTO Application VALUES(?,?,?,?,?,?,?,0,0,?,?);");
 						ps.setInt(1, Application.getApp_code());
 						ps.setInt(2, Application.getAmount());
 						ps.setInt(3, Application.getRepayTime());
@@ -91,6 +91,7 @@ public class sentApplication extends HttpServlet {
 						ps.setInt(6, Application.getTaxes());
 						ps.setString(7, Application.getTekmiriwsi());
 						ps.setString(8, Application.getUsername());
+						ps.setInt(9, 00);
 						ps.executeUpdate();
 						ps = con.prepareStatement("INSERT INTO Director VALUES(\"\",?);");
 						ps.setInt(1, Application.getApp_code());
