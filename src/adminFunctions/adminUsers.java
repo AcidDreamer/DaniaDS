@@ -39,6 +39,7 @@ public class adminUsers extends HttpServlet {
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 				String full_name = request.getParameter("full_name");
+				String email = request.getParameter("email");
 				int atm = Integer.parseInt(request.getParameter("atm"));
 				int adt = Integer.parseInt(request.getParameter("adt"));
 				int salary = Integer.parseInt(request.getParameter("salary"));
@@ -69,12 +70,13 @@ public class adminUsers extends HttpServlet {
 						ps.setString(3, full_name);
 						ps.executeUpdate();
 						ps = con.prepareStatement(
-								"INSERT INTO Client(atm,adt,salary,phone,username) VALUES(?,?,?,?,?);");
+								"INSERT INTO Client(atm,adt,salary,phone,username,email) VALUES(?,?,?,?,?,?);");
 						ps.setInt(1, atm);
 						ps.setInt(2, adt);
 						ps.setInt(3, salary);
 						ps.setInt(4, phone);
 						ps.setString(5, username);
+						ps.setString(6,email);
 						// Εκτελούμε το statement
 						ps.executeUpdate();
 						rd = getServletContext().getRequestDispatcher("/main.jsp");

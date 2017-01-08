@@ -11,7 +11,7 @@
 <%
 user User = (user) session.getAttribute("User");
 
-if (session.getAttribute("User") != null && !(User.getRole().equals("Client")) ) {
+if (session.getAttribute("User") != null && !(User.getRole().equals("Client"))){
         response.sendRedirect("main.jsp");
 }
 %>

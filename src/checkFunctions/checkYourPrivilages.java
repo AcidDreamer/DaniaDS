@@ -324,11 +324,11 @@ public class checkYourPrivilages extends HttpServlet {
 		ResultSet rs = null;
 		try {
 			ps = con.prepareStatement(
-					"SELECT User.username,full_name,id,atm,adt,salary,phone FROM User,Client WHERE User.username = Client.username ;");
+					"SELECT User.username,full_name,id,atm,adt,salary,phone,email FROM User,Client WHERE User.username = Client.username ;");
 			rs = ps.executeQuery();
 			while (rs.next() && rs != null) {
 				client Client = new client(rs.getString("username"), rs.getString("full_name"), rs.getInt("atm"),
-						rs.getInt("adt"), rs.getInt("salary"), rs.getInt("phone"), rs.getInt("id"));
+						rs.getInt("adt"), rs.getInt("salary"), rs.getInt("phone"), rs.getInt("id"),rs.getString("email"));
 				clientList.add(Client);
 
 			}

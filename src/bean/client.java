@@ -9,8 +9,9 @@ public class client {
 	int phone;
 	String loanInfo = "";
 	int id;
+	String email;
 
-	public client(String username, String fullname, int afm, int adt, int salary, int phone, int id) {
+	public client(String username, String fullname, int afm, int adt, int salary, int phone, int id,String email) {
 		super();
 		this.username = username;
 		this.fullname = fullname;
@@ -19,6 +20,7 @@ public class client {
 		this.salary = salary;
 		this.phone = phone;
 		this.id = id;
+		this.email = email;
 	}
 
 	// Καινούργιο toString για τον πελάτη
@@ -59,9 +61,18 @@ public class client {
 	}
 
 	// Getters & Setters
+	
 	public client(String username, int salary) {
 		this.username = username;
 		this.salary = salary;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getUsername() {

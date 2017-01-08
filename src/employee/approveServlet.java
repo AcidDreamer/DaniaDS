@@ -64,7 +64,7 @@ public class approveServlet extends HttpServlet {
 				//Δημιουργεία πελάτη
 				while (rs.next() && rs != null) {
 					Client = new client(rs.getString("username"), rs.getString("full_name"), rs.getInt("atm"),
-							rs.getInt("adt"), rs.getInt("salary"), rs.getInt("phone"), rs.getInt("id"));
+							rs.getInt("adt"), rs.getInt("salary"), rs.getInt("phone"), rs.getInt("id"),rs.getString("email"));
 					Application = new application(rs.getInt("app_code"), rs.getInt("amount"), rs.getString("buy_type"),
 							rs.getString("drivers_license"), rs.getInt("taxes"), rs.getString("username"),
 							rs.getInt("repayTime"), rs.getString("tekmiriwsi"),"");

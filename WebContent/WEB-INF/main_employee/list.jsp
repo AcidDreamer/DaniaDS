@@ -61,6 +61,7 @@
 						out.println("Salary : " + Client.getSalary() + "<br>");
 						out.println("AFM : " + Client.getAfm() + "<br>");
 						out.println("ADT : " + Client.getAdt() + "<br>");
+						out.println("E-mail : " + Client.getEmail() + "<br>");
 						out.println("</div>");
 					}
 				} else {
