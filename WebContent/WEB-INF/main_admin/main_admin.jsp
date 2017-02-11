@@ -59,12 +59,11 @@
 				<button class="SelectBtnEdit">Select</button>
 				
 				<!--  An einai xristis dinw username , pio pedio tha allaksw kai tin timi -->
-				<form class="UserFormEdit">
+				<form class="UserFormEdit" action="adminUsers" method="post" >
 					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" name="username" />
 						Change:
 						<!--  Dialegw pio pedio tha allaksi  -->
-						<select class="selectToChange">
-							<option value=0>Username</option>
+						<select class="selectToChange" name ="selectToChange">
 							<option value=1>Password</option>
 							<option value=2>Status</option>
 							<option value=3>Full name</option>
@@ -73,14 +72,14 @@
 					</div>
 					<!-- ginete isodos neas timis -->
 					<div class = "TextSpans">New Value:<input type="text" value="" placeholder="New Value" name="newValue" /></div>
-					<br><button>Submit</button>					
+					<br><button name = "editBtn">Submit</button>					
 				</form>
-				<form class="AdminFormEdit">
+				
+				<form class="AdminFormEdit" action="adminUsers" method="post" >
 					<div class = "TextSpans">Username:<input type="text" value="" placeholder="Username" name="username" />
 						Change:
 						<!--  Dialegw pio pedio tha allaksi  -->
-						<select class="selectToChange">
-							<option value=0>Username</option>
+						<select class="selectToChange" name ="selectToChange">
 							<option value=1>Password</option>
 							<option value=2>Role</option>
 							<option value=3>Full name</option>
@@ -92,7 +91,7 @@
 					</div>
 					<!-- ginete isodos neas timis -->
 					<div class = "TextSpans">New Value:<input type="text" value="" placeholder="New Value" name="newValue" /></div>
-					<br><button>Submit</button>					
+					<br><button name = "editBtn">Submit</button>					
 				</form>
 				
 		</div>
@@ -141,10 +140,12 @@ $( ".SelectBtnAdd" ).click(function(event) {
 });
 
 $( ".SelectBtnEdit" ).click(function(event) {
-	if($(".allRoles").val()!="Client"){
+	$( ".AdminFormEdit" ).hide(500);
+	$( ".UserFormEdit" ).hide(500);
+	if($("#Edit > select[name='allRoles']").val()=="Client"){
 		  $( ".AdminFormEdit" ).hide(500);
 		  $(".UserFormEdit").show(500);
-	}else if($(".allRoles").val()=="Client"){
+	}else if($("#Edit > select[name='allRoles']").val()!="Client"){
 		  $( ".UserFormEdit" ).hide(500);
 		  $(".AdminFormEdit").show(500);
 	}

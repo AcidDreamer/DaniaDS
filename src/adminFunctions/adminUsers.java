@@ -141,6 +141,74 @@ public class adminUsers extends HttpServlet {
 					}
 				}
 			}
+			if (request.getParameter("editBtn") != null) {
+				String username = request.getParameter("username");
+				String accountType = request.getParameter("allRoles");
+				String newValue = request.getParameter("newValue");
+				System.out.println(request.getParameter("selectToChange"));
+				int selectToChange = Integer.parseInt(request.getParameter("selectToChange"));
+				String fieldToChange = null;
+				Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+				PreparedStatement ps = null;
+				if(newValue == null || newValue.equals("")){
+					out.println("<script>alert(\"" + "Form elements cannot be empty ." + "\")</script>");
+					rd = getServletContext().getRequestDispatcher("/WEB-INF/main_admin/main_admin.jsp");
+					rd.include(request, response);					
+				}else{
+					switch (selectToChange){
+						case 1:fieldToChange = "password";
+								break;
+						case 2:fieldToChange = "role";
+								break;
+						case 3:fieldToChange = "full_name";
+								break;
+						case 4:fieldToChange = "atm";
+								break;
+						case 5:fieldToChange = "adt";
+								break;
+						case 6:fieldToChange = "salary";
+								break;
+						case 7:fieldToChange = "phone";
+							break;
+					}
+					try {
+						if(selectToChange == 1||selectToChange == 2||selectToChange == 3 ){
+							StringBuilder sb = new StringBuilder();
+							sb.append("Update User Set ");
+							sb.append(fieldToChange);
+							sb.append(" = ?  WHERE username= ? ;");
+							String statement= sb.toString();
+							ps = con.prepareStatement(statement);
+							ps.setString(1, newValue);
+							ps.setString(2, username);
+							ps.executeUpdate();
+							rd = getServletContext().getRequestDispatcher("/main.jsp");
+							out.println("<script>alert(\"" + "User editted successfully" + "\")</script>");
+							rd.include(request, response);
+						}else if(selectToChange == 4 ||selectToChange == 5||selectToChange == 6||selectToChange == 7){
+							StringBuilder sb = new StringBuilder();
+							sb.append("Update Client Set ");
+							sb.append(fieldToChange);
+							sb.append(" = ?  WHERE username= ? ;");
+							String statement= sb.toString();
+							ps = con.prepareStatement(statement);
+							ps.setInt(1, Integer.parseInt(newValue));
+							ps.setString(2, username);
+							ps.executeUpdate();
+							rd = getServletContext().getRequestDispatcher("/main.jsp");
+							out.println("<script>alert(\"" + "User editted successfully" + "\")</script>");
+							rd.include(request, response);
+						}
+					}catch(SQLException e){
+						System.out.println("Database connection problem");
+						rd = getServletContext().getRequestDispatcher("/main.jsp");
+						out.println("<script>alert(\"'Something went Wrong'\")</script>");
+						rd.include(request, response);
+						throw new ServletException("DB Connection problem.");
+					}
+
+				}
+			}
 			if (request.getParameter("deleteBtn") != null) {
 				// Παρόμοιο με το πρώτο μόνο που κάνουμε delete
 				String username = request.getParameter("username");
