@@ -46,7 +46,7 @@
 					type="checkbox" name="Ypologismos"> Modification:<input
 					type="checkbox" name="Tropopoiisi"><br> Approval:<input
 					type="checkbox" name="Egkrisi"><br>>
-				<button name="add">Submit</button>
+				<button name="edit">Submit</button>
 			</form>
 		</div>
 
